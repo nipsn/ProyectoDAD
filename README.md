@@ -20,3 +20,6 @@ Nombre | Apellidos | Correo | Github
 Miguel | Santiago Herrero | m.santiagohe@alumnos.urjc.es | msantiagocsb
 Diego | Díaz Pérez | d.diazp@alumnos.urjc.es | didushow
 Oscar | Nydza Nicpoñ | o.nydza.2017@alumnos.urjc.es | nipsn
+
+# Trello
+https://trello.com/b/t2QVrq9n/marketplace-project-dad
