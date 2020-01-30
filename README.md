@@ -1,10 +1,11 @@
 # Proyecto Marketplace (nombre en proceso)
 Aplicación de compraventa de productos.
-Parte privada: gestión de productos (ej. supervisión de productos) y usuarios.
 
-Parte pública: darte de alta, login, subir uno o varios productos, comprar uno o varios productos, borrar uno o varios productos propios.
+Parte privada: gestión de tus productos, comunicarte con otros usuarios y comprar productos.Los usuarios administradores podrán gestionar todos los productos y usuarios.
 
-Entidades: Usuario, Producto, Chat.
+Parte pública: darte de alta, login, ver productos.
+
+Entidades: Usuario, Producto, Chat, Pedido.
 
 Dentro de Usuario: Envío (direccion, producto, otra dirección).
 
@@ -12,7 +13,7 @@ Dentro de Producto: Categoría.
 
 Dentro de Chat: Mensajes.
 
-Descripción de las funcionalidades de los servicios internos: generar una factura en PDF y generar el historial de los envíos en PDF.
+Descripción de las funcionalidades de los servicios internos: generar una factura en PDF, generar el historial de los envíos en PDF y envío de correos como notificacion.
 
 # Integrantes del grupo
 Nombre | Apellidos | Correo | Github 
