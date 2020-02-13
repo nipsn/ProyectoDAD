@@ -1,5 +1,7 @@
 package es.urjc.computadores;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,15 @@ public class GreetingController {
 	@Autowired
 	private PedidoRepository pedidoRepo;
 	private ProductoRepository productoRepo;
+	
+	private MensajeRepository mensajeRepo;
+	private ChatRepository chatRepo;
+	
+	@PostConstruct
+	public void init() {
+		
+	}
+	
 	
 	@GetMapping("/greeting")
 	public String greeting(Model model) { 
