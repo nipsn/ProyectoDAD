@@ -13,6 +13,13 @@ Parte pública: darte de alta, login, ver productos.
 - Generar el historial de los envíos en PDF
 - Envío de correos como notificacion.
 
+ ## Pantallas de la aplicación
+Se especifican los wireframes de las principales pantallas de Gym Tool
+
+**Pantalla Inicial**
+
+![enter image description here](Pantallas/Main.png)
+
 # Integrantes del grupo
 Nombre | Apellidos | Correo | Github 
 --- | --- | --- | --- 
