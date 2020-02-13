@@ -22,23 +22,23 @@ Se especifican los wireframes de las principales pantallas de Gym Tool
 
 **Pantalla de Búsqueda de Producto**
 
-![enter image description here](Pantallas/Search.png)
+<kbd>![enter image description here](Pantallas/Search.png)</kbd>
 
 **Pantalla de Producto**
 
-![enter image description here](Pantallas/Product.png)
+<kbd>![enter image description here](Pantallas/Product.png)</kbd>
 
 **Pantalla de Perfil del Usuario**
 
-![enter image description here](Pantallas/Profile.png)
+<kbd>![enter image description here](Pantallas/Profile.png)</kbd>
 
 **Pantalla de Registrarse**
 
-![enter image description here](Pantallas/SingUp.png)
+<kbd>![enter image description here](Pantallas/SingUp.png)</kbd>
 
 **Pantalla de Iniciar Sesión**
 
-![enter image description here](Pantallas/SingIn.png)
+<kbd>![enter image description here](Pantallas/SingIn.png)</kbd>
 
 # Integrantes del grupo
 Nombre | Apellidos | Correo | Github 
