@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class GreetingController {
 	@Autowired
-	private Usuario u1;
+	private PedidoRepository pedidoRepo;
+	private ProductoRepository productoRepo;
+	
 	@GetMapping("/greeting")
 	public String greeting(Model model) { 
 		model.addAttribute("name", "Mundo");
-		model.addAttribute("test", u1.getNombre());
 		return "greeting_template";
 	}
 	
