@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class GreetingController {
 	@Autowired
+	private PedidoRepository pedidoRepo;
+	private ProductoRepository productoRepo;
+	
 	private MensajeRepository mensajeRepo;
 	private ChatRepository chatRepo;
 	
