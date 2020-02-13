@@ -1,8 +1,10 @@
 package es.urjc.computadores;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
+
 
 @Entity
 public class Chat {
@@ -10,7 +12,7 @@ public class Chat {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@OneToMany(cascade=CascadeType.ALL)
-	private ArrayList<Mensaje> mensajes;
+	private List<Mensaje> mensajes;
 	
 	protected Chat() {}
 	
