@@ -18,7 +18,7 @@ Se especifican los wireframes de las principales pantallas de Gym Tool
 
 **Pantalla Inicial**
 
-![enter image description here](Pantallas/Main.png)
+<kbd>![enter image description here](Pantallas/Main.png)</kbd>
 
 **Pantalla de Búsqueda de Producto**
 
