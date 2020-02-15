@@ -1,5 +1,50 @@
 <html>
 <body>
-	<p>Hello, {{name}}</p>
+	<main>
+		<div>
+			<h2>
+				Selecciona Lista
+			</h2>
+			<form action="peticion">
+				<fieldset>
+             	     <label for="button"><input id="button" type="radio" name="peticion" value="usuarios" checked="checked"> Usuarios</label>
+             	     <label for="button2"><input id="button2" type="radio" name="peticion" value="productos"> Productos</label> 
+            	     <label for="button3"><input id="button3" type="radio" name="peticion" value="pedidos"> Pedidos</label>                    
+           		</fieldset>
+            <input type='submit' value='Enviar'>
+			</form>            
+		</div>
+		<div>
+			<h2>
+				Inserta los datos del usuario
+			</h2>
+			<form action="inputuser">
+				<input type='text' name='nombre'/>nombre
+				<input type='text' name='passwd'/>pass
+				<p>pass</p>
+            	<input type='submit' value='Enviar'>
+			</form>            
+		</div>
+		<div>
+			<h2>
+				Inserta los datos del producto
+			</h2>
+			<form action="inputproducto">
+				<div>
+					<input type='text' name='precio'/>precio
+				</div>
+				<div>
+					<input type='text' name='categoria'/>categoria
+				</div>
+				<div>
+					<input type='text' name='descripcion'/>descripcion
+				</div>
+				<div>
+					<input type='text' name='usuario'/>usuario
+				</div>
+            	<input type='submit' value='Enviar'>
+			</form>            
+		</div>
+	</main>
 </body>
 </html>
