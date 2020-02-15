@@ -20,5 +20,9 @@ public class Chat {
 		mensajes = new ArrayList<Mensaje>();
 		mensajes.add(mensaje);
 	}
+
+	public List<Mensaje> getMensajes() {
+		return mensajes;
+	}
 	
 }
