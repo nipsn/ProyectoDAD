@@ -12,15 +12,44 @@ public class Producto {
 	private double precio;
 	private String categoria;
 	private String descripcion;
-	
-	@OneToOne (cascade = CascadeType.ALL)
-	private Pedido pedido;
+	@ManyToOne
+	private Usuario propietario;
 
 	public Producto() {}
 	
-	public Producto(double precio,String categoria, String descripcion) {
+	public Producto(double precio,String categoria, String descripcion, Usuario propietario) {
 		this.precio=precio;
 		this.categoria=categoria;
 		this.descripcion=descripcion;
+		this.propietario=propietario;
 	}
+
+	public long getId() {
+		return id;
+	}
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	
 }
