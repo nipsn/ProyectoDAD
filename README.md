@@ -13,6 +13,33 @@ Parte pública: darte de alta, login, ver productos.
 - Generar el historial de los envíos en PDF
 - Envío de correos como notificacion.
 
+ ## Pantallas de la aplicación
+Se especifican los wireframes de las principales pantallas de Gym Tool
+
+**Pantalla Inicial**
+
+<kbd>![enter image description here](Pantallas/Main.png)</kbd>
+
+**Pantalla de Búsqueda de Producto**
+
+<kbd>![enter image description here](Pantallas/Search.png)</kbd>
+
+**Pantalla de Producto**
+
+<kbd>![enter image description here](Pantallas/Product.png)</kbd>
+
+**Pantalla de Perfil del Usuario**
+
+<kbd>![enter image description here](Pantallas/Profile.png)</kbd>
+
+**Pantalla de Registrarse**
+
+<kbd>![enter image description here](Pantallas/SingUp.png)</kbd>
+
+**Pantalla de Iniciar Sesión**
+
+<kbd>![enter image description here](Pantallas/SingIn.png)</kbd>
+
 # Integrantes del grupo
 Nombre | Apellidos | Correo | Github 
 --- | --- | --- | --- 

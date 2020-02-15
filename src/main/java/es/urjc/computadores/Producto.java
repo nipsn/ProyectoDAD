@@ -23,6 +23,4 @@ public class Producto {
 		this.categoria=categoria;
 		this.descripcion=descripcion;
 	}
-	
-
 }
