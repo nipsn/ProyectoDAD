@@ -15,6 +15,9 @@ public class Producto {
 	
 	@OneToOne (cascade = CascadeType.ALL)
 	private Pedido pedido;
+	
+	@ManyToOne
+	private Usuario propietario;
 
 	public Producto() {}
 	
