@@ -17,7 +17,7 @@ public class Pedido {
 	private String DireccionDestino;
 	private Date fecha;
 	
-	@OneToOne(mappedBy="pedido")
+	@OneToOne
 	private Producto producto;
 	
 	public Pedido() {}

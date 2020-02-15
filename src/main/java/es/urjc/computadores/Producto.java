@@ -13,9 +13,6 @@ public class Producto {
 	private String categoria;
 	private String descripcion;
 	
-	@OneToOne (cascade = CascadeType.ALL)
-	private Pedido pedido;
-	
 	@ManyToOne
 	private Usuario propietario;
 
