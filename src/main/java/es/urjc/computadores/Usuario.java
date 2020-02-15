@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 import org.springframework.stereotype.Component;
 
+
 @Entity
 public class Usuario {
 	
@@ -20,7 +21,17 @@ public class Usuario {
 	@OneToMany(mappedBy = "propietario")
 	private List<Producto> productosEnVenta;
 	
-		
+	
+	
+	@OneToMany(cascade =CascadeType.ALL)
+	private List<Pedido> pedidosVendidos;
+	@OneToMany(cascade =CascadeType.ALL)
+	private List<Pedido> pedidosComprados;//distiguir con booleano o algo parecido el que ha llegado del que no
+	@ManyToMany(cascade =CascadeType.ALL)
+	private List<Chat> listaChats;
+	
+	
+	
 	public Usuario() {}
 	
 	public Usuario(String nombre, String clave){

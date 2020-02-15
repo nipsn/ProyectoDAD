@@ -11,6 +11,10 @@ public class Chat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	@ManyToMany(mappedBy="listaChats")
+	private List<Usuario> usuarios;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Mensaje> mensajes;
 	
