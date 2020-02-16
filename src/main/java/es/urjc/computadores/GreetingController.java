@@ -1,6 +1,7 @@
 package es.urjc.computadores;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -29,14 +30,23 @@ public class GreetingController implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-		usuarioRepo.save(new Usuario("pedro potro","pedromolamucho123"));
-		usuarioRepo.save(new Usuario("pedro potro2","pedromolamucho123"));
+		Usuario p1 = new Usuario("pedro potro","pedromolamucho123");
+		Usuario p2 = new Usuario("pedro potro2","pedromolamucho123");
+		usuarioRepo.save(p1);
+		usuarioRepo.save(p2);
 		usuarioRepo.save(new Usuario("pedro potro3","pedromolamucho123"));
 		usuarioRepo.save(new Usuario("pedro potro4","pedromolamucho123"));
 		
-		List<Usuario> p = usuarioRepo.findByNombre("pedro potro");		
-		Producto p1 = new Producto(2.0,"aaa","un item muy bonico",p.get(0));
-		productoRepo.save(p1);
+		List<Usuario> lista = usuarioRepo.findByNombre("pedro potro");		
+		Producto p = new Producto(2.0,"aaa","un item muy bonico",lista.get(0));
+		productoRepo.save(p);
+		
+		
+		Mensaje m1 = new Mensaje("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",new Date());
+		
+		Chat c1 = new Chat(p1);
+		c1.getMensajes().add(m1);
+		chatRepo.save(c1);
 	}
 	
 	@PostConstruct
@@ -56,15 +66,27 @@ public class GreetingController implements CommandLineRunner{
 		return "greeting_template";
 	}
 	
+	@GetMapping("/subirproducto")
+	public String pantallainsertarproducto(Model model) {
+		return "subirproducto";
+	}
+	
 	@GetMapping("/inputproducto")
 	public String insertarProducto(Model model, @RequestParam String precio, String categoria, String descripcion, String usuario) {
 
 		List<Usuario> p = usuarioRepo.findByNombre(usuario);		
 		Producto p1 = new Producto(Double.parseDouble(precio),categoria,descripcion,p.get(0));		
 		productoRepo.save(p1);
-		return "greeting_template";
+		return "subirproducto";
 	}
 	
+	@GetMapping("/inputchat")
+	public String insertarChat(Model model, @RequestParam String propietario) {
+		Usuario user = usuarioRepo.findByNombre(propietario).get(0);
+		Chat chat = new Chat(user);
+		chatRepo.save(chat);
+		return "greeting_template";
+	}
 	
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
@@ -74,6 +96,36 @@ public class GreetingController implements CommandLineRunner{
 		model.addAttribute("producto", elegido);
 
 		return "producto";
+	}
+	
+	@GetMapping("/{userid}/chats")
+	public String verChatDeUsuario(Model model, @PathVariable Long userid) {
+		Usuario elegido = usuarioRepo.findById(userid).get();
+		List<Chat> listaChat = chatRepo.findByComprador(elegido);
+		model.addAttribute("datos", listaChat);
+		
+		return "listachats";
+	}
+	
+	@GetMapping("/chats/{id}")
+	public String verChat(Model model, @PathVariable Long id) {
+		Chat elegido = chatRepo.findById(id).get();
+		List<Mensaje> mensajes = elegido.getMensajes();
+		
+		model.addAttribute("chatid",elegido.getId());
+		model.addAttribute("mensajes", mensajes);
+		
+		return "chat";
+		
+	}
+	
+	@GetMapping("/inputmensaje/{id}")
+	public String insertarMensaje(Model model, @PathVariable Long id, @RequestParam String mensaje) {
+		Chat elegido = chatRepo.findById(id).get();
+		elegido.insertarMensaje(mensaje);
+		model.addAttribute("mensajes", elegido.getMensajes());
+		
+		return "chat";
 	}
 	
 	@GetMapping("/peticion")

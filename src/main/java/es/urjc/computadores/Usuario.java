@@ -27,7 +27,7 @@ public class Usuario {
 	@OneToMany(cascade =CascadeType.ALL)
 	private List<Pedido> pedidosComprados;//distiguir con booleano o algo parecido el que ha llegado del que no
 	
-	@ManyToMany(cascade =CascadeType.ALL)
+	@OneToMany(mappedBy = "comprador")
 	private List<Chat> listaChats;
 	
 	

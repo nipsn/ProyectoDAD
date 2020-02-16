@@ -1,6 +1,7 @@
 package es.urjc.computadores;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -12,21 +13,31 @@ public class Chat {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@ManyToMany(mappedBy="listaChats")
-	private List<Usuario> usuarios;
+	@ManyToOne
+	private Usuario comprador;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Mensaje> mensajes;
 	
 	protected Chat() {}
 	
-	public Chat(Mensaje mensaje) {
+	public Chat(Usuario comprador) {
+		this.comprador = comprador;
 		mensajes = new ArrayList<Mensaje>();
-		mensajes.add(mensaje);
 	}
 
 	public List<Mensaje> getMensajes() {
 		return mensajes;
 	}
+	
+	public void insertarMensaje(String mensaje) {
+		this.mensajes.add(new Mensaje(mensaje, new Date()));
+	}
+
+	public long getId() {
+		return id;
+	}
+	
+	
 	
 }
