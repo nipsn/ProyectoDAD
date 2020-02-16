@@ -62,7 +62,7 @@ public class GreetingController implements CommandLineRunner{
 		List<Usuario> p = usuarioRepo.findByNombre(usuario);		
 		Producto p1 = new Producto(Double.parseDouble(precio),categoria,descripcion,p.get(0));		
 		productoRepo.save(p1);
-		return "greeting_template";
+		return "subirproducto";
 	}
 	
 	
@@ -88,6 +88,10 @@ public class GreetingController implements CommandLineRunner{
 			return "productos";
 		}
 		return "listadevuelta";
+	}
+	@GetMapping("/subirproducto")
+	public String subirProducto(Model model) {
+	return "subirproducto";
 	}
 	
 }
