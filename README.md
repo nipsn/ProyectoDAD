@@ -40,6 +40,26 @@ Se especifican los wireframes de las principales pantallas de Gym Tool
 
 <kbd>![enter image description here](Pantallas/SingIn.png)</kbd>
 
+**Pantalla de Chat sobre Producto**
+
+<kbd>![enter image description here](Pantallas/Chats.png)</kbd>
+
+**Pantalla de Productos Favoritos**
+
+<kbd>![enter image description here](Pantallas/Favorites.png)</kbd>
+
+**Pantalla de Gestión de Productos del Usuario**
+
+<kbd>![enter image description here](Pantallas/Products.png)</kbd>
+
+**Pantalla de Subir un Producto**
+
+<kbd>![enter image description here](Pantallas/UploadProduct.png)</kbd>
+
+**Pantalla de Gestión de Envíos**
+
+<kbd>![enter image description here](Pantallas/Ship.png)</kbd>
+
 # Integrantes del grupo
 Nombre | Apellidos | Correo | Github 
 --- | --- | --- | --- 
