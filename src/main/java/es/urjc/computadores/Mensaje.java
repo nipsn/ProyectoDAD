@@ -19,4 +19,18 @@ public class Mensaje {
 		this.cuerpo = mensaje;
 		this.fecha = fecha;
 	}
+
+	public String getCuerpo() {
+		return cuerpo;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	
 }
