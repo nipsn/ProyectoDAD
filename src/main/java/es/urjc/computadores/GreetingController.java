@@ -65,10 +65,11 @@ public class GreetingController implements CommandLineRunner{
 		return "greeting_template";
 	}
 	
+	
 	@GetMapping("/producto/{num}")
-	public String nuevoAnuncio(Model model, @PathVariable int num) {
-
-		Producto elegido = productoRepo.findById((long) num).get();
+	public String verProducto(Model model, @PathVariable Long num) {
+		
+		Producto elegido = productoRepo.findById(num).get();
 
 		model.addAttribute("producto", elegido);
 
