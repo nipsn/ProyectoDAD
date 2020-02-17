@@ -35,7 +35,7 @@
 		</ul>
 	</nav>
 	<nav class="nav justify-content-center">
-  		<a class="nav-link" href="#">Tus Productos</a>
+  		<a class="nav-link" href="/usuario/{{userid}}">Tus Productos</a>
   		<a class="nav-link" href="#">Chats</a>
   		<a class="nav-link" href="#">Favoritos</a>
   		<a class="nav-link" href="#">Envíos</a>
@@ -44,7 +44,7 @@
 	
 	
 	<div class="container">
-	<br>s
+	<br>
 			<h2>Productos vendidos</h2>
 					<form>
 					<table>
@@ -52,10 +52,9 @@
             			<tr>
             				<td>
             					<a href="/producto/{{producto.id}}">{{direccionDestino}}</a>
-            					
             				</td>
             				<td>
-            				<a href="/producto/{{producto.id}}">{{fecha}}</a>
+            					<a href="/producto/{{producto.id}}">{{fecha}}</a>
             				<td>
             				<td>
             					{{precio}}
@@ -74,7 +73,7 @@
             					
             				</td>
             				<td>
-            				<a href="/producto/{{id}}">{{fecha}}</a>
+            					<a href="/producto/{{id}}">{{fecha}}</a>
             				<td>
             				<td>
             					{{precio}}
@@ -82,13 +81,7 @@
             			</tr>
             		{{/comprados}}
            		</table>
-					</form>
-	</div>
-	
-	
-	
-	</body>
-	
-	
-	
-	</html>
+			</form>
+		</div>
+	</body>	
+</html>

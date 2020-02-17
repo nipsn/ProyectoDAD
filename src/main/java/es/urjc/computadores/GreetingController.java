@@ -66,11 +66,6 @@ public class GreetingController implements CommandLineRunner{
 		return "SignUp";
 	}
 	
-	@GetMapping("/subirproducto")
-	public String pantallainsertarproducto(Model model) {
-		return "subirproducto";
-	}
-	
 	@GetMapping("/inputproducto")
 	public String insertarProducto(Model model, @RequestParam String precio, String categoria, String descripcion, String usuario) {
 
@@ -168,23 +163,25 @@ public class GreetingController implements CommandLineRunner{
 	}
 	@GetMapping("/subirproducto")
 	public String subirProducto(Model model) {
-	return "subirproducto";
+		return "subirproducto";
 	}
 	
 	@GetMapping("/SignUp")
 	public String SignUp(Model model) {
-	return "SignUp";
+		return "SignUp";
 	}
 	
-	@GetMapping("/buscadorpedidos")
-	public String buscadorpedidos(Model model) {
-	return "buscadorpedidos";
+	@GetMapping("/SignIn")
+	public String SignIn(Model model) {
+		return "SignIn";
 	}
+	
 	@GetMapping("/{id}/gestionenvios")
 	public String gestionenvios(Model model,@PathVariable Long id) {
 		Usuario u = usuarioRepo.findById(id).get();
 		model.addAttribute("vendidos", u.getProductosVendidos());
 		model.addAttribute("comprados", u.getProductosComprados());
+		model.addAttribute("userid", u.getId());
 		
 		return "gestionenvios";
 	}
