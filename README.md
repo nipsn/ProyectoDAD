@@ -21,7 +21,7 @@ Se especifican los wireframes de las principales pantallas de Gym Tool
 ![enter image description here](Pantallas/FlujoPantallas.png)
 **Diagrama de Flujo de Pantalla FINAL**
 
-Este es el diagrama de flujo resultante para la primera fase del desarrollo
+Diagrama de flujo resultante para la primera fase del desarrollo
 
 ![enter image description here](Pantallasfinales/flujofinal.png)
 
@@ -101,7 +101,7 @@ Este es el diagrama de flujo resultante para la primera fase del desarrollo
 
 <kbd>![enter image description here](Pantallas/UploadProduct.png)</kbd>
 
-**Concepto de Pantalla Subir un Productos**
+**Concepto de Pantalla Subir un Producto**
 
 <kbd>![enter image description here](Pantallasfinales/vistasubirproducto.png)</kbd>
 
