@@ -16,6 +16,10 @@ Parte pública: darte de alta, login, ver productos.
  ## Pantallas de la aplicación
 Se especifican los wireframes de las principales pantallas de Gym Tool
 
+**Diagrama de Flujo de Pantalla**
+
+![enter image description here](Pantallas/FlujoPantallas.png)
+
 **Pantalla Inicial**
 
 <kbd>![enter image description here](Pantallas/Main.png)</kbd>
