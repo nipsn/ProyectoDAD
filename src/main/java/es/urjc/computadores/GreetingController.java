@@ -112,17 +112,18 @@ public class GreetingController implements CommandLineRunner{
 		Chat elegido = chatRepo.findById(id).get();
 		List<Mensaje> mensajes = elegido.getMensajes();
 		
-		model.addAttribute("chatid",elegido.getId());
 		model.addAttribute("mensajes", mensajes);
 		
 		return "chat";
 		
 	}
 	
-	@GetMapping("/inputmensaje/{id}")
-	public String insertarMensaje(Model model, @PathVariable Long id, @RequestParam String mensaje) {
+	@GetMapping("/chats/inputmensaje")
+	public String insertarMensaje(Model model, @RequestParam String mensaje, String chatid) {
+		Long id = Long.parseLong(chatid);
 		Chat elegido = chatRepo.findById(id).get();
 		elegido.insertarMensaje(mensaje);
+		chatRepo.save(elegido);
 		model.addAttribute("mensajes", elegido.getMensajes());
 		
 		return "chat";
