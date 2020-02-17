@@ -101,7 +101,7 @@ Este es el diagrama de flujo resultante para la primera fase del desarrollo
 
 <kbd>![enter image description here](Pantallas/UploadProduct.png)</kbd>
 
-**Concepto de Pantalla de Subir un Productos**
+**Concepto de Pantalla Subir un Productos**
 
 <kbd>![enter image description here](Pantallasfinales/vistasubirproducto.png)</kbd>
 
