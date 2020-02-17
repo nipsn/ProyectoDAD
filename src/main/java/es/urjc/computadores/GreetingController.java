@@ -92,6 +92,7 @@ public class GreetingController implements CommandLineRunner{
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
 		
+		
 		Producto elegido = productoRepo.findById(num).get();
 
 		model.addAttribute("producto", elegido);
