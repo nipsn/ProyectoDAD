@@ -20,13 +20,24 @@ public class Pedido {
 	@OneToOne
 	private Producto producto;
 	
+	@ManyToOne
+	private Usuario destinatario;
+	
+	@ManyToOne
+	private Usuario remitente;
+	
+	
+	
 	public Pedido() {}
 	
-	public Pedido(double precio,String DireccionOrigen,String DireccionDestino,Date fecha) {
+	public Pedido(double precio,String DireccionOrigen,String DireccionDestino,Producto producto, Usuario destinatario) {
 		this.precio=precio;
 		this.DireccionOrigen=DireccionOrigen;
 		this.DireccionDestino=DireccionDestino;
-		this.fecha=fecha;
+		this.fecha=new Date();
+		this.producto=producto;
+		this.remitente=producto.getPropietario();
+		this.destinatario=destinatario;
 	}
 
 	public long getId() {

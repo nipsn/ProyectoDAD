@@ -30,13 +30,21 @@ public class GreetingController implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		usuarioRepo.save(new Usuario("pedro potro","pedromolamucho123"));
-		usuarioRepo.save(new Usuario("pedro potro2","pedromolamucho123"));
+		Usuario des=new Usuario("pedro potro2","pedromolamucho123");
+		usuarioRepo.save(des);
 		usuarioRepo.save(new Usuario("pedro potro3","pedromolamucho123"));
 		usuarioRepo.save(new Usuario("pedro potro4","pedromolamucho123"));
 		
 		List<Usuario> p = usuarioRepo.findByNombre("pedro potro");		
 		Producto p1 = new Producto(2.0,"aaa","un item muy bonico",p.get(0));
-		productoRepo.save(p1);
+		productoRepo.save(p1);	
+		
+		Pedido p2 = new Pedido(p1.getPrecio(),"calle falsa 123","Gran via 2",p1,des);
+		pedidoRepo.save(p2);
+		Usuario user = p1.getPropietario();
+		//user.getProductosVendidos().add(p2);
+		usuarioRepo.save(user);
+		
 	}
 	
 	@PostConstruct
@@ -53,7 +61,7 @@ public class GreetingController implements CommandLineRunner{
 	@GetMapping("/inputuser")
 	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
 		usuarioRepo.save(new Usuario(nombre,passwd));
-		return "greeting_template";
+		return "SignUp";
 	}
 	
 	@GetMapping("/inputproducto")
@@ -64,6 +72,7 @@ public class GreetingController implements CommandLineRunner{
 		productoRepo.save(p1);
 		return "subirproducto";
 	}
+	
 	
 	
 	@GetMapping("/producto/{num}")
@@ -94,4 +103,21 @@ public class GreetingController implements CommandLineRunner{
 	return "subirproducto";
 	}
 	
+	@GetMapping("/SignUp")
+	public String SignUp(Model model) {
+	return "SignUp";
+	}
+	
+	@GetMapping("/buscadorpedidos")
+	public String buscadorpedidos(Model model) {
+	return "buscadorpedidos";
+	}
+	@GetMapping("/{id}/gestionenvios")
+	public String gestionenvios(Model model,@PathVariable Long id) {
+		Usuario u = usuarioRepo.findById(id).get();
+		model.addAttribute("vendidos", u.getProductosVendidos());
+		model.addAttribute("comprados", u.getProductosComprados());
+		
+		return "gestionenvios";
+	}
 }

@@ -21,14 +21,16 @@ public class Usuario {
 	@OneToMany(mappedBy = "propietario")
 	private List<Producto> productosEnVenta;
 	
-	@OneToMany(cascade =CascadeType.ALL)
+	@OneToMany(mappedBy="remitente")
 	private List<Pedido> pedidosVendidos;
 	
-	@OneToMany(cascade =CascadeType.ALL)
+	@OneToMany(mappedBy="destinatario")
 	private List<Pedido> pedidosComprados;//distiguir con booleano o algo parecido el que ha llegado del que no
 	
 	@ManyToMany(cascade =CascadeType.ALL)
 	private List<Chat> listaChats;
+	
+	
 	
 	
 	
@@ -37,7 +39,10 @@ public class Usuario {
 	public Usuario(String nombre, String clave){
 		this.nombre = nombre;
 		this.clave = clave;
-		productosEnVenta = new ArrayList<Producto>();
+		this.productosEnVenta = new ArrayList<Producto>();
+		this.pedidosVendidos=new ArrayList<Pedido>();
+		this.pedidosComprados= new ArrayList<Pedido>();
+		
 	}
 
 	public long getId() {
@@ -62,6 +67,15 @@ public class Usuario {
 
 	public List<Producto> getProductosEnVenta() {
 		return productosEnVenta;
+	}
+	public List<Pedido> getProductosVendidos() {
+		return pedidosVendidos;
+	}
+	public List<Pedido> getProductosComprados() {
+		return pedidosComprados;
+	}
+	public void setProductosVendidos(Pedido nuevo) {
+		this.pedidosVendidos.add(nuevo);
 	}
 
 	

@@ -14,6 +14,9 @@ public class Producto {
 	private String descripcion;
 	@ManyToOne
 	private Usuario propietario;
+	
+	@OneToOne
+	private Pedido pedido;
 
 	public Producto() {}
 	
@@ -51,5 +54,10 @@ public class Producto {
 		this.descripcion = descripcion;
 	}
 
-	
+	public Usuario getPropietario() {
+		return this.propietario;
+	}
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
 }

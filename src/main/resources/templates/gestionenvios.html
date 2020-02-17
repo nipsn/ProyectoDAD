@@ -17,14 +17,73 @@
 	
 	
 	<body>
+		
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  		<a class="navbar-brand" href="/">Market Place</a>
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  		</button>
+  		<div class="collapse navbar-collapse">
+    		<form class="form-inline my-2 my-lg-0">
+      			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    		</form>
+  		</div>
+  		<ul class="nav justify-content-end">
+    		<button class="btn btn-success mr-1">Registrarse</a>
+    		<button class="btn btn-primary">Subir Producto</a>
+		</ul>
+	</nav>
+	<nav class="nav justify-content-center">
+  		<a class="nav-link" href="#">Tus Productos</a>
+  		<a class="nav-link" href="#">Chats</a>
+  		<a class="nav-link" href="#">Favoritos</a>
+  		<a class="nav-link" href="#">Envíos</a>
+	</nav>
 	
 	
 	
-	
-	
-	
-	
-	
+	<div class="container">
+	<br>
+			<h2>Productos vendidos</h2>
+					<form>
+					<table>
+            		{{#vendidos}}
+            			<tr>
+            				<td>
+            					<a href="/producto/{{producto.id}}">{{direccionDestino}}</a>
+            					
+            				</td>
+            				<td>
+            				<a href="/producto/{{producto.id}}">{{fecha}}</a>
+            				<td>
+            				<td>
+            					{{precio}}
+            				</td>
+            			</tr>
+            		{{/vendidos}}
+           		</table>
+					</form>
+			<h2>Productos comprados</h2>
+					<form>
+					<table>
+            		{{#comprados}}
+            			<tr>
+            				<td>
+            					<a href="/producto/{{id}}">{{direccionDestino}}</a>
+            					
+            				</td>
+            				<td>
+            				<a href="/producto/{{id}}">{{fecha}}</a>
+            				<td>
+            				<td>
+            					{{precio}}
+            				</td>
+            			</tr>
+            		{{/comprados}}
+           		</table>
+					</form>
+	</div>
 	
 	
 	
