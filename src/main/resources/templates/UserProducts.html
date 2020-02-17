@@ -39,8 +39,8 @@
       <tr>
         <th>Precio</th>
         <th>Título</th>
-        <th>Fecha de Publicación</th>
-        <th>Fecha de Modificación</th>
+        <th>Categoría</th>
+        <th>Propietario</th>
           <th></th>
           <th></th>
           <th></th>
@@ -52,14 +52,14 @@
       <tr>
         <td>#{{precio}}</td>
         <td>{{titulo}}</td>
-        <td>{{fechaPublicacion}}</td>
-        <td>{{fechaModificacion}}</td>
-        <td><a href="/detalles?name={{name}}">Detalles</a></td>
-        <td><a href="/delete?name={{name}}">Delete</a></td>
-        <td><a href="/desactivar?name={{name}}">Desactivar Anuncio</a></td>
-        <td><a href="/editar?name={{name}}">Editar</a></td>
+        <td>{{categoria}}</td>
+        <td>{{propietario}}</td>
+        <td><a href="/detalles?id={{id}}">Detalles</a></td>
+        <td><a href="/delete?id={{id}}">Delete</a></td>
+        <td><a href="/desactivar?id={{id}}">Desactivar Anuncio</a></td>
+        <td><a href="/editar?id={{id}}">Editar</a></td>
       </tr>
-     {{/Productos}}
+     {{/productos}}
     </tbody>
   </table>
 	</div>
