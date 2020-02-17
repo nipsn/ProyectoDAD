@@ -42,9 +42,9 @@ public class GreetingController implements CommandLineRunner{
 		productoRepo.save(p);
 		
 		
-		Mensaje m1 = new Mensaje("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",new Date());
+		Mensaje m1 = new Mensaje("Esto es un mensaje",new Date());
 		
-		Chat c1 = new Chat(p1);
+		Chat c1 = new Chat(p1,p2);
 		c1.getMensajes().add(m1);
 		chatRepo.save(c1);
 	}
@@ -63,12 +63,7 @@ public class GreetingController implements CommandLineRunner{
 	@GetMapping("/inputuser")
 	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
 		usuarioRepo.save(new Usuario(nombre,passwd));
-		return "greeting_template";
-	}
-	
-	@GetMapping("/subirproducto")
-	public String pantallainsertarproducto(Model model) {
-		return "subirproducto";
+		return "SignUp";
 	}
 	
 	@GetMapping("/inputproducto")
@@ -81,12 +76,24 @@ public class GreetingController implements CommandLineRunner{
 	}
 	
 	@GetMapping("/inputchat")
-	public String insertarChat(Model model, @RequestParam String propietario) {
-		Usuario user = usuarioRepo.findByNombre(propietario).get(0);
-		Chat chat = new Chat(user);
+	public String insertarChat(Model model, @RequestParam String user1, String user2) {
+		Usuario u1 = usuarioRepo.findByNombre(user1).get(0);
+		Usuario u2 = usuarioRepo.findByNombre(user2).get(0);
+		Chat chat = new Chat(u1,u2);
 		chatRepo.save(chat);
 		return "greeting_template";
 	}
+	
+	@GetMapping("producto/inputpedido/{productid}")
+	public String insertarPedido(Model model, @PathVariable Long productid, @RequestParam String origen,String destino, String remitente) {
+		Usuario user = usuarioRepo.findByNombre(remitente).get(0);
+		Producto p = productoRepo.findById(productid).get();
+		Pedido pedido = new Pedido(p,origen,destino,user);
+		pedidoRepo.save(pedido);
+		model.addAttribute("producto", p);
+		return "producto";
+	}
+	
 	
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
@@ -98,11 +105,21 @@ public class GreetingController implements CommandLineRunner{
 		return "producto";
 	}
 	
+	@GetMapping("/usuario/{userid}")
+	public String verDatosUsuario(Model model, @PathVariable Long userid) {
+		Usuario elegido = usuarioRepo.findById(userid).get();
+		model.addAttribute("usuario", elegido);
+		model.addAttribute("productos", elegido.getProductosEnVenta());
+		return "usuario";
+	}
+	
 	@GetMapping("/{userid}/chats")
 	public String verChatDeUsuario(Model model, @PathVariable Long userid) {
 		Usuario elegido = usuarioRepo.findById(userid).get();
 		List<Chat> listaChat = chatRepo.findByComprador(elegido);
+		listaChat.addAll(chatRepo.findByVendedor(elegido));
 		model.addAttribute("datos", listaChat);
+		model.addAttribute("userid", userid);
 		
 		return "listachats";
 	}
@@ -112,18 +129,21 @@ public class GreetingController implements CommandLineRunner{
 		Chat elegido = chatRepo.findById(id).get();
 		List<Mensaje> mensajes = elegido.getMensajes();
 		
-		model.addAttribute("chatid",elegido.getId());
 		model.addAttribute("mensajes", mensajes);
+		model.addAttribute("userid", elegido.getComprador().getId());
 		
 		return "chat";
 		
 	}
 	
-	@GetMapping("/inputmensaje/{id}")
-	public String insertarMensaje(Model model, @PathVariable Long id, @RequestParam String mensaje) {
+	@GetMapping("/chats/inputmensaje")
+	public String insertarMensaje(Model model, @RequestParam String mensaje, String chatid) {
+		Long id = Long.parseLong(chatid);
 		Chat elegido = chatRepo.findById(id).get();
 		elegido.insertarMensaje(mensaje);
+		chatRepo.save(elegido);
 		model.addAttribute("mensajes", elegido.getMensajes());
+		model.addAttribute("userid", elegido.getVendedor().getId());
 		
 		return "chat";
 	}
@@ -141,5 +161,28 @@ public class GreetingController implements CommandLineRunner{
 		}
 		return "listadevuelta";
 	}
+	@GetMapping("/subirproducto")
+	public String subirProducto(Model model) {
+		return "subirproducto";
+	}
 	
+	@GetMapping("/SignUp")
+	public String SignUp(Model model) {
+		return "SignUp";
+	}
+	
+	@GetMapping("/SignIn")
+	public String SignIn(Model model) {
+		return "SignIn";
+	}
+	
+	@GetMapping("/{id}/gestionenvios")
+	public String gestionenvios(Model model,@PathVariable Long id) {
+		Usuario u = usuarioRepo.findById(id).get();
+		model.addAttribute("vendidos", u.getProductosVendidos());
+		model.addAttribute("comprados", u.getProductosComprados());
+		model.addAttribute("userid", u.getId());
+		
+		return "gestionenvios";
+	}
 }

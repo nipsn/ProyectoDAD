@@ -6,6 +6,7 @@
 				Chat
 			</h2>
 			{{#mensajes}}
+			<div>
             	<tr>
             		<td>	
             			{{-index}}
@@ -17,13 +18,20 @@
             			{{cuerpo}}
             		</td>
             	</tr>
-            	
+            </div>	
+			
+			
+			
+			{{/mensajes}}
+			
 				
-            {{/mensajes}}
-            <form action="inputmensaje/{{chatid}}">
-					<input type='text' name='mensaje'/>
+            
+            <form action="inputmensaje">
+					<input type='text' name='mensaje'/>mensaje
+					<input type='text' name='chatid'/>chatid
 					<input type='submit' value='Enviar'>
 			</form>
+			<a href="/{{userid}}/chats">Volver</a>
 		</div>
 	</main>
 </body>
