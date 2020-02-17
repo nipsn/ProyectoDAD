@@ -19,6 +19,10 @@ Se especifican los wireframes de las principales pantallas de Gym Tool
 **Diagrama de Flujo de Pantalla**
 
 ![enter image description here](Pantallas/FlujoPantallas.png)
+**Diagrama de Flujo de Pantalla FINAL**
+Este es el diagrama de flujo resultante para la primera fase del desarrollo
+
+![enter image description here](Pantallasfinales/flujofinal.png)
 
 **Pantalla Inicial**
 
