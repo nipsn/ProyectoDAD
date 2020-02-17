@@ -51,5 +51,10 @@ public class Producto {
 		this.descripcion = descripcion;
 	}
 
+	public Usuario getPropietario() {
+		return propietario;
+	}
+
+	
 	
 }

@@ -89,6 +89,16 @@ public class GreetingController implements CommandLineRunner{
 		return "greeting_template";
 	}
 	
+	@GetMapping("producto/inputpedido/{productid}")
+	public String insertarPedido(Model model, @PathVariable Long productid, @RequestParam String origen,String destino, String remitente) {
+		Usuario user = usuarioRepo.findByNombre(remitente).get(0);
+		Producto p = productoRepo.findById(productid).get();
+		Pedido pedido = new Pedido(p,origen,destino,user);
+		pedidoRepo.save(pedido);
+		model.addAttribute("producto", p);
+		return "producto";
+	}
+	
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
 		
@@ -124,7 +134,7 @@ public class GreetingController implements CommandLineRunner{
 		List<Mensaje> mensajes = elegido.getMensajes();
 		
 		model.addAttribute("mensajes", mensajes);
-		model.addAttribute("userid", elegido.getVendedor().getId());
+		model.addAttribute("userid", elegido.getComprador().getId());
 		
 		return "chat";
 		
