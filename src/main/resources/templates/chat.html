@@ -19,13 +19,19 @@
             		</td>
             	</tr>
             </div>	
+			
+			
+			
+			{{/mensajes}}
+			
 				
-            {{/mensajes}}
+            
             <form action="inputmensaje">
 					<input type='text' name='mensaje'/>mensaje
 					<input type='text' name='chatid'/>chatid
 					<input type='submit' value='Enviar'>
 			</form>
+			<a href="/{{userid}}/chats">Volver</a>
 		</div>
 	</main>
 </body>

@@ -99,12 +99,21 @@ public class GreetingController implements CommandLineRunner{
 		return "producto";
 	}
 	
+	@GetMapping("/usuario/{userid}")
+	public String verDatosUsuario(Model model, @PathVariable Long userid) {
+		Usuario elegido = usuarioRepo.findById(userid).get();
+		model.addAttribute("usuario", elegido);
+		model.addAttribute("productos", elegido.getProductosEnVenta());
+		return "usuario";
+	}
+	
 	@GetMapping("/{userid}/chats")
 	public String verChatDeUsuario(Model model, @PathVariable Long userid) {
 		Usuario elegido = usuarioRepo.findById(userid).get();
 		List<Chat> listaChat = chatRepo.findByComprador(elegido);
 		listaChat.addAll(chatRepo.findByVendedor(elegido));
 		model.addAttribute("datos", listaChat);
+		model.addAttribute("userid", userid);
 		
 		return "listachats";
 	}
@@ -115,6 +124,7 @@ public class GreetingController implements CommandLineRunner{
 		List<Mensaje> mensajes = elegido.getMensajes();
 		
 		model.addAttribute("mensajes", mensajes);
+		model.addAttribute("userid", elegido.getVendedor().getId());
 		
 		return "chat";
 		
@@ -127,6 +137,7 @@ public class GreetingController implements CommandLineRunner{
 		elegido.insertarMensaje(mensaje);
 		chatRepo.save(elegido);
 		model.addAttribute("mensajes", elegido.getMensajes());
+		model.addAttribute("userid", elegido.getVendedor().getId());
 		
 		return "chat";
 	}

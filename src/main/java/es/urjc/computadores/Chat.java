@@ -16,7 +16,8 @@ public class Chat {
 	@ManyToOne
 	private Usuario comprador;
 	
-	@ManyToOne Usuario vendedor;
+	@ManyToOne 
+	private Usuario vendedor;
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Mensaje> mensajes;
@@ -40,6 +41,16 @@ public class Chat {
 	public long getId() {
 		return id;
 	}
+
+	public Usuario getComprador() {
+		return comprador;
+	}
+
+	public Usuario getVendedor() {
+		return vendedor;
+	}
+	
+	
 	
 	
 	
