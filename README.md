@@ -8,6 +8,10 @@ Parte pública: darte de alta, login, ver productos.
 # Modelo Entidad-Relación
 ![alt text](modeloER.jpeg)
 
+# Diagrama UML
+![alt text](UML.png)
+
+
 # Servicios internos 
 - Generar una factura en PDF
 - Generar el historial de los envíos en PDF
