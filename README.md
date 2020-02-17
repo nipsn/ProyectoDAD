@@ -61,6 +61,10 @@ Este es el diagrama de flujo resultante para la primera fase del desarrollo
 
 <kbd>![enter image description here](Pantallasfinales/vistaregistro.png)</kbd>
 
+**Concepto Pantalla de lista de usuarios**
+
+<kbd>![enter image description here](Pantallasfinales/vistalistadousuarios.png)</kbd>
+
 **Pantalla de Iniciar Sesión**
 
 <kbd>![enter image description here](Pantallas/SingIn.png)</kbd>
@@ -76,6 +80,10 @@ Este es el diagrama de flujo resultante para la primera fase del desarrollo
 **Concepto Pantalla de Chat sobre Producto**
 
 <kbd>![enter image description here](Pantallasfinales/vistachat.png)</kbd>
+
+**Concepto Pantalla de lista de chats**
+
+<kbd>![enter image description here](Pantallasfinales/vistalistadochats.png)</kbd>
 
 **Pantalla de Productos Favoritos**
 
@@ -97,7 +105,12 @@ Este es el diagrama de flujo resultante para la primera fase del desarrollo
 
 <kbd>![enter image description here](Pantallas/UploadProduct.png)</kbd>
 
-**Pantalla de Pantalla de Subir un Productos**
+**Concepto Pantalla de lista Productos**
+
+<kbd>![enter image description here](Pantallasfinales/vistalistadoproductos.png)</kbd>
+
+
+**Concepto de Pantalla de Subir un Productos**
 
 <kbd>![enter image description here](Pantallasfinales/vistasubirproducto.png)</kbd>
 
