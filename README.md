@@ -31,7 +31,7 @@ Este es el diagrama de flujo resultante para la primera fase del desarrollo
 
 **Concepto Pantalla Inicial**
 
-<kbd>![enter image description here]Pantallasfinales/vistaprincipal.png)</kbd>
+<kbd>![enter image description here](Pantallasfinales/vistaprincipal.png)</kbd>
 
 **Pantalla de Búsqueda de Producto**
 
