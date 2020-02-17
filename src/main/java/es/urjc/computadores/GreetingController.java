@@ -98,6 +98,7 @@ public class GreetingController implements CommandLineRunner{
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
 		
+		
 		Producto elegido = productoRepo.findById(num).get();
 
 		model.addAttribute("producto", elegido);
@@ -130,7 +131,7 @@ public class GreetingController implements CommandLineRunner{
 		List<Mensaje> mensajes = elegido.getMensajes();
 		
 		model.addAttribute("mensajes", mensajes);
-		model.addAttribute("userid", elegido.getComprador().getId());
+		model.addAttribute("userid", elegido.getVendedor().getId());
 		
 		return "chat";
 		
