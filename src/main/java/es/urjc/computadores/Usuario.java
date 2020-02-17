@@ -70,6 +70,15 @@ public class Usuario {
 	public List<Producto> getProductosEnVenta() {
 		return productosEnVenta;
 	}
+	public List<Pedido> getProductosVendidos() {
+		return pedidosVendidos;
+	}
+	public List<Pedido> getProductosComprados() {
+		return pedidosComprados;
+	}
+	public void setProductosVendidos(Pedido nuevo) {
+		this.pedidosVendidos.add(nuevo);
+	}
 
 	public List<Pedido> getPedidosVendidos() {
 		return pedidosVendidos;

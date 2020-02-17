@@ -14,6 +14,9 @@ public class Producto {
 	private String descripcion;
 	@ManyToOne
 	private Usuario propietario;
+	
+	@OneToOne
+	private Pedido pedido;
 
 	public Producto() {}
 	

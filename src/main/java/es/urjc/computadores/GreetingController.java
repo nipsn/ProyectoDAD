@@ -63,7 +63,7 @@ public class GreetingController implements CommandLineRunner{
 	@GetMapping("/inputuser")
 	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
 		usuarioRepo.save(new Usuario(nombre,passwd));
-		return "greeting_template";
+		return "SignUp";
 	}
 	
 	@GetMapping("/subirproducto")
@@ -98,6 +98,7 @@ public class GreetingController implements CommandLineRunner{
 		model.addAttribute("producto", p);
 		return "producto";
 	}
+	
 	
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
@@ -165,5 +166,26 @@ public class GreetingController implements CommandLineRunner{
 		}
 		return "listadevuelta";
 	}
+	@GetMapping("/subirproducto")
+	public String subirProducto(Model model) {
+	return "subirproducto";
+	}
 	
+	@GetMapping("/SignUp")
+	public String SignUp(Model model) {
+	return "SignUp";
+	}
+	
+	@GetMapping("/buscadorpedidos")
+	public String buscadorpedidos(Model model) {
+	return "buscadorpedidos";
+	}
+	@GetMapping("/{id}/gestionenvios")
+	public String gestionenvios(Model model,@PathVariable Long id) {
+		Usuario u = usuarioRepo.findById(id).get();
+		model.addAttribute("vendidos", u.getProductosVendidos());
+		model.addAttribute("comprados", u.getProductosComprados());
+		
+		return "gestionenvios";
+	}
 }
