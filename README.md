@@ -101,18 +101,14 @@ Este es el diagrama de flujo resultante para la primera fase del desarrollo
 
 <kbd>![enter image description here](Pantallas/UploadProduct.png)</kbd>
 
-**Concepto Pantalla de Subir un Producto**
+**Concepto de Pantalla de Subir un Productos**
 
-<kbd>![enter image description here](Pantallas/UploadProduct.png)</kbd>
+<kbd>![enter image description here](Pantallasfinales/vistasubirproducto.png)</kbd>
 
 **Concepto Pantalla de lista Productos**
 
 <kbd>![enter image description here](Pantallasfinales/vistalistadoproductos.png)</kbd>
 
-
-**Concepto de Pantalla de Subir un Productos**
-
-<kbd>![enter image description here](Pantallasfinales/vistasubirproducto.png)</kbd>
 
 # Integrantes del grupo
 Nombre | Apellidos | Correo | Github 
