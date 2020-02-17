@@ -1,0 +1,28 @@
+<html>
+<body>
+	<main>
+		<div>
+			<h2>
+				Listado de usuarios
+			</h2>
+            <div>
+            	<table>
+            		{{#datos}}
+            			<tr>
+            				<td>	
+            					{{-index}}
+            				</td>
+            				<td>
+            					<a href="/usuario/{{id}}">{{nombre}}</a>
+            				</td>
+            			</tr>
+            		{{/datos}}
+           		</table>
+            </div>
+            <div>
+            	
+            </div>
+		</div>
+	</main>
+</body>
+</html>
