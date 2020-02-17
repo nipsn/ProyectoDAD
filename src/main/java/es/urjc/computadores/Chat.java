@@ -16,13 +16,16 @@ public class Chat {
 	@ManyToOne
 	private Usuario comprador;
 	
+	@ManyToOne Usuario vendedor;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Mensaje> mensajes;
 	
 	protected Chat() {}
 	
-	public Chat(Usuario comprador) {
+	public Chat(Usuario comprador, Usuario vendedor) {
 		this.comprador = comprador;
+		this.vendedor = vendedor;
 		mensajes = new ArrayList<Mensaje>();
 	}
 

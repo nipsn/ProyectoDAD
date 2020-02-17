@@ -28,7 +28,10 @@ public class Usuario {
 	private List<Pedido> pedidosComprados;//distiguir con booleano o algo parecido el que ha llegado del que no
 	
 	@OneToMany(mappedBy = "comprador")
-	private List<Chat> listaChats;
+	private List<Chat> listaChatsEnLosQueEstoy;
+	
+	@OneToMany(mappedBy = "vendedor")
+	private List<Chat> listaChatsMios;
 	
 	
 	
@@ -38,6 +41,8 @@ public class Usuario {
 		this.nombre = nombre;
 		this.clave = clave;
 		productosEnVenta = new ArrayList<Producto>();
+		listaChatsEnLosQueEstoy = new ArrayList<Chat>();
+		listaChatsMios = new ArrayList<Chat>();
 	}
 
 	public long getId() {
@@ -64,5 +69,23 @@ public class Usuario {
 		return productosEnVenta;
 	}
 
+	public List<Pedido> getPedidosVendidos() {
+		return pedidosVendidos;
+	}
+
+	public List<Pedido> getPedidosComprados() {
+		return pedidosComprados;
+	}
+
+	public List<Chat> getListaChatsEnLosQueEstoy() {
+		return listaChatsEnLosQueEstoy;
+	}
+
+	public List<Chat> getListaChatsMios() {
+		return listaChatsMios;
+	}
+
+	
+	
 	
 }

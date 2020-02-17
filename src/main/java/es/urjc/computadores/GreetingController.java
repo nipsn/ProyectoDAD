@@ -42,9 +42,9 @@ public class GreetingController implements CommandLineRunner{
 		productoRepo.save(p);
 		
 		
-		Mensaje m1 = new Mensaje("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",new Date());
+		Mensaje m1 = new Mensaje("Esto es un mensaje",new Date());
 		
-		Chat c1 = new Chat(p1);
+		Chat c1 = new Chat(p1,p2);
 		c1.getMensajes().add(m1);
 		chatRepo.save(c1);
 	}
@@ -81,9 +81,10 @@ public class GreetingController implements CommandLineRunner{
 	}
 	
 	@GetMapping("/inputchat")
-	public String insertarChat(Model model, @RequestParam String propietario) {
-		Usuario user = usuarioRepo.findByNombre(propietario).get(0);
-		Chat chat = new Chat(user);
+	public String insertarChat(Model model, @RequestParam String user1, String user2) {
+		Usuario u1 = usuarioRepo.findByNombre(user1).get(0);
+		Usuario u2 = usuarioRepo.findByNombre(user2).get(0);
+		Chat chat = new Chat(u1,u2);
 		chatRepo.save(chat);
 		return "greeting_template";
 	}
@@ -102,6 +103,7 @@ public class GreetingController implements CommandLineRunner{
 	public String verChatDeUsuario(Model model, @PathVariable Long userid) {
 		Usuario elegido = usuarioRepo.findById(userid).get();
 		List<Chat> listaChat = chatRepo.findByComprador(elegido);
+		listaChat.addAll(chatRepo.findByVendedor(elegido));
 		model.addAttribute("datos", listaChat);
 		
 		return "listachats";
