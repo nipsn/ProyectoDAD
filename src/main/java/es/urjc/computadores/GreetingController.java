@@ -30,23 +30,7 @@ public class GreetingController implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-		Usuario p1 = new Usuario("pedro potro","pedromolamucho123");
-		Usuario p2 = new Usuario("pedro potro2","pedromolamucho123");
-		usuarioRepo.save(p1);
-		usuarioRepo.save(p2);
-		usuarioRepo.save(new Usuario("pedro potro3","pedromolamucho123"));
-		usuarioRepo.save(new Usuario("pedro potro4","pedromolamucho123"));
-		
-		List<Usuario> lista = usuarioRepo.findByNombre("pedro potro");		
-		Producto p = new Producto(2.0,"aaa","un item muy bonico",lista.get(0));
-		productoRepo.save(p);
-		
-		
-		Mensaje m1 = new Mensaje("Esto es un mensaje",new Date());
-		
-		Chat c1 = new Chat(p1,p2);
-		c1.getMensajes().add(m1);
-		chatRepo.save(c1);
+
 	}
 	
 	@PostConstruct
@@ -63,7 +47,7 @@ public class GreetingController implements CommandLineRunner{
 	@GetMapping("/inputuser")
 	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
 		usuarioRepo.save(new Usuario(nombre,passwd));
-		return "SignUp";
+		return "greeting_template";
 	}
 	
 	@GetMapping("/inputproducto")
