@@ -47,7 +47,7 @@ public class GreetingController implements CommandLineRunner{
 	@GetMapping("/inputuser")
 	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
 		usuarioRepo.save(new Usuario(nombre,passwd));
-		return "SignUp";
+		return "greeting_template";
 	}
 	
 	@GetMapping("/inputproducto")
