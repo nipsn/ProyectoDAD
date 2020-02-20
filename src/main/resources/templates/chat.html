@@ -1,0 +1,38 @@
+<html>
+<body>
+	<main>
+		<div>
+			<h2>
+				Chat
+			</h2>
+			{{#mensajes}}
+			<div>
+            	<tr>
+            		<td>	
+            			{{-index}}
+            		</td>
+            		<td>
+            			{{fecha}}
+            		</td>
+            		<td>
+            			{{cuerpo}}
+            		</td>
+            	</tr>
+            </div>	
+			
+			
+			
+			{{/mensajes}}
+			
+				
+            
+            <form action="inputmensaje">
+					<input type='text' name='mensaje'/>mensaje
+					<input type='text' name='chatid'/>chatid
+					<input type='submit' value='Enviar'>
+			</form>
+			<a href="/{{userid}}/chats">Volver</a>
+		</div>
+	</main>
+</body>
+</html>

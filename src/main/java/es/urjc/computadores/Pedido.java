@@ -23,21 +23,18 @@ public class Pedido {
 	@ManyToOne
 	private Usuario destinatario;
 	
-	@ManyToOne
+	@ManyToOne 
 	private Usuario remitente;
-	
-	
 	
 	public Pedido() {}
 	
-	public Pedido(double precio,String DireccionOrigen,String DireccionDestino,Producto producto, Usuario destinatario) {
-		this.precio=precio;
+	public Pedido(Producto producto, String DireccionOrigen,String DireccionDestino, Usuario remitente) {
 		this.DireccionOrigen=DireccionOrigen;
 		this.DireccionDestino=DireccionDestino;
 		this.fecha=new Date();
-		this.producto=producto;
-		this.remitente=producto.getPropietario();
-		this.destinatario=destinatario;
+		this.destinatario = producto.getPropietario();
+		this.remitente = remitente;
+		this.precio = producto.getPrecio();
 	}
 
 	public long getId() {

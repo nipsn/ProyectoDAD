@@ -55,9 +55,9 @@ public class Producto {
 	}
 
 	public Usuario getPropietario() {
-		return this.propietario;
+		return propietario;
 	}
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
-	}
+
+	
+	
 }

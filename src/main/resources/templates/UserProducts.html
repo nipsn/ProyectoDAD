@@ -34,7 +34,32 @@
 		<h2>Tus Productos</h2>
 	</div>
 	<div class="container">
-		slkadalk
+		<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Precio</th>
+        <th>Título</th>
+        <th>Categoría</th>
+        <th>Propietario</th>
+          <th></th>
+          <th></th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#productos}}
+      <tr>
+        <td>#{{precio}}</td>
+        <td>{{titulo}}</td>
+        <td>{{categoria}}</td>
+        <td>{{propietario}}</td>
+        <td><a href="/detalles?id={{id}}">Detalles</a></td>
+        <td><a href="/delete?id={{id}}">Delete</a></td>
+        <td><a href="/editar?id={{id}}">Editar</a></td>
+      </tr>
+     {{/productos}}
+    </tbody>
+  </table>
 	</div>
 </body>
 </html>

@@ -21,16 +21,17 @@ public class Usuario {
 	@OneToMany(mappedBy = "propietario")
 	private List<Producto> productosEnVenta;
 	
-	@OneToMany(mappedBy="remitente")
+	@OneToMany(mappedBy = "remitente")
 	private List<Pedido> pedidosVendidos;
 	
-	@OneToMany(mappedBy="destinatario")
+	@OneToMany(mappedBy = "destinatario")
 	private List<Pedido> pedidosComprados;//distiguir con booleano o algo parecido el que ha llegado del que no
 	
-	@ManyToMany(cascade =CascadeType.ALL)
-	private List<Chat> listaChats;
+	@OneToMany(mappedBy = "comprador")
+	private List<Chat> listaChatsEnLosQueEstoy;//malos nombres. hay que cambiar
 	
-	
+	@OneToMany(mappedBy = "vendedor")
+	private List<Chat> listaChatsMios;
 	
 	
 	
@@ -39,10 +40,11 @@ public class Usuario {
 	public Usuario(String nombre, String clave){
 		this.nombre = nombre;
 		this.clave = clave;
-		this.productosEnVenta = new ArrayList<Producto>();
-		this.pedidosVendidos=new ArrayList<Pedido>();
-		this.pedidosComprados= new ArrayList<Pedido>();
-		
+		productosEnVenta = new ArrayList<Producto>();
+		listaChatsEnLosQueEstoy = new ArrayList<Chat>();
+		listaChatsMios = new ArrayList<Chat>();
+		pedidosVendidos = new ArrayList<Pedido>();
+		pedidosComprados = new ArrayList<Pedido>();
 	}
 
 	public long getId() {
@@ -78,5 +80,23 @@ public class Usuario {
 		this.pedidosVendidos.add(nuevo);
 	}
 
+	public List<Pedido> getPedidosVendidos() {
+		return pedidosVendidos;
+	}
+
+	public List<Pedido> getPedidosComprados() {
+		return pedidosComprados;
+	}
+
+	public List<Chat> getListaChatsEnLosQueEstoy() {
+		return listaChatsEnLosQueEstoy;
+	}
+
+	public List<Chat> getListaChatsMios() {
+		return listaChatsMios;
+	}
+
+	
+	
 	
 }

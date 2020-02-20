@@ -1,6 +1,7 @@
 package es.urjc.computadores;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -29,22 +30,7 @@ public class GreetingController implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-		usuarioRepo.save(new Usuario("pedro potro","pedromolamucho123"));
-		Usuario des=new Usuario("pedro potro2","pedromolamucho123");
-		usuarioRepo.save(des);
-		usuarioRepo.save(new Usuario("pedro potro3","pedromolamucho123"));
-		usuarioRepo.save(new Usuario("pedro potro4","pedromolamucho123"));
-		
-		List<Usuario> p = usuarioRepo.findByNombre("pedro potro");		
-		Producto p1 = new Producto(2.0,"aaa","un item muy bonico",p.get(0));
-		productoRepo.save(p1);	
-		
-		Pedido p2 = new Pedido(p1.getPrecio(),"calle falsa 123","Gran via 2",p1,des);
-		pedidoRepo.save(p2);
-		Usuario user = p1.getPropietario();
-		//user.getProductosVendidos().add(p2);
-		usuarioRepo.save(user);
-		
+
 	}
 	
 	@PostConstruct
@@ -61,7 +47,7 @@ public class GreetingController implements CommandLineRunner{
 	@GetMapping("/inputuser")
 	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
 		usuarioRepo.save(new Usuario(nombre,passwd));
-		return "SignUp";
+		return "greeting_template";
 	}
 	
 	@GetMapping("/inputproducto")
@@ -73,16 +59,78 @@ public class GreetingController implements CommandLineRunner{
 		return "subirproducto";
 	}
 	
+	@GetMapping("/inputchat")
+	public String insertarChat(Model model, @RequestParam String user1, String user2) {
+		Usuario u1 = usuarioRepo.findByNombre(user1).get(0);
+		Usuario u2 = usuarioRepo.findByNombre(user2).get(0);
+		Chat chat = new Chat(u1,u2);
+		chatRepo.save(chat);
+		return "greeting_template";
+	}
+	
+	@GetMapping("producto/inputpedido/{productid}")
+	public String insertarPedido(Model model, @PathVariable Long productid, @RequestParam String origen,String destino, String remitente) {
+		Usuario user = usuarioRepo.findByNombre(remitente).get(0);
+		Producto p = productoRepo.findById(productid).get();
+		Pedido pedido = new Pedido(p,origen,destino,user);
+		pedidoRepo.save(pedido);
+		model.addAttribute("producto", p);
+		return "producto";
+	}
 	
 	
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
+		
 		
 		Producto elegido = productoRepo.findById(num).get();
 
 		model.addAttribute("producto", elegido);
 
 		return "producto";
+	}
+	
+	@GetMapping("/usuario/{userid}")
+	public String verDatosUsuario(Model model, @PathVariable Long userid) {
+		Usuario elegido = usuarioRepo.findById(userid).get();
+		model.addAttribute("usuario", elegido);
+		model.addAttribute("productos", elegido.getProductosEnVenta());
+		return "usuario";
+	}
+	
+	@GetMapping("/{userid}/chats")
+	public String verChatDeUsuario(Model model, @PathVariable Long userid) {
+		Usuario elegido = usuarioRepo.findById(userid).get();
+		List<Chat> listaChat = chatRepo.findByComprador(elegido);
+		listaChat.addAll(chatRepo.findByVendedor(elegido));
+		model.addAttribute("datos", listaChat);
+		model.addAttribute("userid", userid);
+		
+		return "listachats";
+	}
+	
+	@GetMapping("/chats/{id}")
+	public String verChat(Model model, @PathVariable Long id) {
+		Chat elegido = chatRepo.findById(id).get();
+		List<Mensaje> mensajes = elegido.getMensajes();
+		
+		model.addAttribute("mensajes", mensajes);
+		model.addAttribute("userid", elegido.getVendedor().getId());
+		
+		return "chat";
+		
+	}
+	
+	@GetMapping("/chats/inputmensaje")
+	public String insertarMensaje(Model model, @RequestParam String mensaje, String chatid) {
+		Long id = Long.parseLong(chatid);
+		Chat elegido = chatRepo.findById(id).get();
+		elegido.insertarMensaje(mensaje);
+		chatRepo.save(elegido);
+		model.addAttribute("mensajes", elegido.getMensajes());
+		model.addAttribute("userid", elegido.getVendedor().getId());
+		
+		return "chat";
 	}
 	
 	@GetMapping("/peticion")
@@ -100,23 +148,25 @@ public class GreetingController implements CommandLineRunner{
 	}
 	@GetMapping("/subirproducto")
 	public String subirProducto(Model model) {
-	return "subirproducto";
+		return "subirproducto";
 	}
 	
 	@GetMapping("/SignUp")
 	public String SignUp(Model model) {
-	return "SignUp";
+		return "SignUp";
 	}
 	
-	@GetMapping("/buscadorpedidos")
-	public String buscadorpedidos(Model model) {
-	return "buscadorpedidos";
+	@GetMapping("/SignIn")
+	public String SignIn(Model model) {
+		return "SignIn";
 	}
+	
 	@GetMapping("/{id}/gestionenvios")
 	public String gestionenvios(Model model,@PathVariable Long id) {
 		Usuario u = usuarioRepo.findById(id).get();
 		model.addAttribute("vendidos", u.getProductosVendidos());
 		model.addAttribute("comprados", u.getProductosComprados());
+		model.addAttribute("userid", u.getId());
 		
 		return "gestionenvios";
 	}

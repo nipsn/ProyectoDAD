@@ -1,0 +1,24 @@
+<html>
+<body>
+	<main>
+		<div>
+			<h2>
+				Listado de chats por usuario
+			</h2>
+            <div>
+            	<table>
+            		{{#datos}}
+            		<div>
+            			{{-index}}
+						<a href="/chats/{{id}}">{{id}}</a>
+            		</div>
+            		{{/datos}}
+           		</table>
+            </div>
+            <div>
+            	<a href="/usuario/{{userid}}">Volver</a>
+            </div>
+		</div>
+	</main>
+</body>
+</html>
