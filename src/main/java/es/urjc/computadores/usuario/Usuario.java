@@ -1,4 +1,4 @@
-package es.urjc.computadores;
+package es.urjc.computadores.usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,10 @@ import java.util.List;
 import javax.persistence.*;
 
 import org.springframework.stereotype.Component;
+
+import es.urjc.computadores.chat.Chat;
+import es.urjc.computadores.pedido.Pedido;
+import es.urjc.computadores.producto.Producto;
 
 
 @Entity

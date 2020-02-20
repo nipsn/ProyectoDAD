@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.urjc.computadores.producto.*;
+import es.urjc.computadores.usuario.*;
+import es.urjc.computadores.pedido.*;
+import es.urjc.computadores.chat.*;
+import es.urjc.computadores.mensaje.*;
+
 @Controller
 public class GreetingController implements CommandLineRunner{
 	@Autowired
@@ -22,12 +28,7 @@ public class GreetingController implements CommandLineRunner{
 	private ProductoRepository productoRepo;
 	@Autowired
 	private UsuarioRepository usuarioRepo;
-	@Autowired
-	private MensajeRepository mensajeRepo;
-	@Autowired
-	private ChatRepository chatRepo;
-	
-	
+
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -55,14 +56,6 @@ public class GreetingController implements CommandLineRunner{
 		return "subirproducto";
 	}
 	
-	@GetMapping("/inputchat")
-	public String insertarChat(Model model, @RequestParam String user1, String user2) {
-		Usuario u1 = usuarioRepo.findByNombre(user1).get(0);
-		Usuario u2 = usuarioRepo.findByNombre(user2).get(0);
-		Chat chat = new Chat(u1,u2);
-		chatRepo.save(chat);
-		return "greeting_template";
-	}
 	
 	@GetMapping("producto/inputpedido/{productid}")
 	public String insertarPedido(Model model, @PathVariable Long productid, @RequestParam String origen,String destino, String remitente) {
@@ -88,47 +81,25 @@ public class GreetingController implements CommandLineRunner{
 	
 
 	
-	@GetMapping("/{userid}/chats")
-	public String verChatDeUsuario(Model model, @PathVariable Long userid) {
-		Usuario elegido = usuarioRepo.findById(userid).get();
-		List<Chat> listaChat = chatRepo.findByComprador(elegido);
-		listaChat.addAll(chatRepo.findByVendedor(elegido));
-		model.addAttribute("datos", listaChat);
-		model.addAttribute("userid", userid);
-		
-		return "listachats";
-	}
 	
-	@GetMapping("/chats/{id}")
-	public String verChat(Model model, @PathVariable Long id) {
-		Chat elegido = chatRepo.findById(id).get();
-		List<Mensaje> mensajes = elegido.getMensajes();
-		
-		model.addAttribute("mensajes", mensajes);
-		model.addAttribute("userid", elegido.getVendedor().getId());
-		
-		return "chat";
-		
-	}
 	
-	@GetMapping("/chats/inputmensaje")
-	public String insertarMensaje(Model model, @RequestParam String mensaje, String chatid) {
-		Long id = Long.parseLong(chatid);
-		Chat elegido = chatRepo.findById(id).get();
-		elegido.insertarMensaje(mensaje);
-		chatRepo.save(elegido);
-		model.addAttribute("mensajes", elegido.getMensajes());
-		model.addAttribute("userid", elegido.getVendedor().getId());
-		
-		return "chat";
-	}
+	
+	
+	
 	//TODO: separar en varios controladores
 	@GetMapping("/peticion")
 	public String devolverLista(Model model, @RequestParam String peticion) { 
 		if(peticion.equals("usuarios")) {
-			List<Usuario> lista = usuarioRepo.findAll();
-			model.addAttribute("datos", lista);
-			return "usuarios";
+			
+			
+			
+			
+			// TODO: quita la parte del producto!!!
+			
+			
+			
+			
+			
 		} else if (peticion.equals("productos")) {
 			List<Producto> lista = productoRepo.findAll();
 			model.addAttribute("datos", lista);
