@@ -44,11 +44,7 @@ public class GreetingController implements CommandLineRunner{
 		return "greeting_template";
 	}
 	
-	@GetMapping("/inputuser")
-	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
-		usuarioRepo.save(new Usuario(nombre,passwd));
-		return "greeting_template";
-	}
+	
 	
 	@GetMapping("/inputproducto")
 	public String insertarProducto(Model model, @RequestParam String precio, String categoria, String descripcion, String usuario) {
@@ -90,13 +86,7 @@ public class GreetingController implements CommandLineRunner{
 		return "producto";
 	}
 	
-	@GetMapping("/usuario/{userid}")
-	public String verDatosUsuario(Model model, @PathVariable Long userid) {
-		Usuario elegido = usuarioRepo.findById(userid).get();
-		model.addAttribute("usuario", elegido);
-		model.addAttribute("productos", elegido.getProductosEnVenta());
-		return "usuario";
-	}
+
 	
 	@GetMapping("/{userid}/chats")
 	public String verChatDeUsuario(Model model, @PathVariable Long userid) {
@@ -132,7 +122,7 @@ public class GreetingController implements CommandLineRunner{
 		
 		return "chat";
 	}
-	
+	//TODO: separar en varios controladores
 	@GetMapping("/peticion")
 	public String devolverLista(Model model, @RequestParam String peticion) { 
 		if(peticion.equals("usuarios")) {
@@ -151,15 +141,7 @@ public class GreetingController implements CommandLineRunner{
 		return "subirproducto";
 	}
 	
-	@GetMapping("/SignUp")
-	public String SignUp(Model model) {
-		return "SignUp";
-	}
-	
-	@GetMapping("/SignIn")
-	public String SignIn(Model model) {
-		return "SignIn";
-	}
+
 	
 	@GetMapping("/{id}/gestionenvios")
 	public String gestionenvios(Model model,@PathVariable Long id) {
