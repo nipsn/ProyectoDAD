@@ -1,4 +1,4 @@
-package es.urjc.computadores;
+package es.urjc.computadores.usuario;
 
 import java.util.List;
 

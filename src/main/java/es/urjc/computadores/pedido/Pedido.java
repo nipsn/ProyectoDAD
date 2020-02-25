@@ -1,8 +1,11 @@
-package es.urjc.computadores;
+package es.urjc.computadores.pedido;
 
 import java.util.Date;
 
 import javax.persistence.*;
+
+import es.urjc.computadores.producto.Producto;
+import es.urjc.computadores.usuario.Usuario;
 
 @Entity
 public class Pedido {
