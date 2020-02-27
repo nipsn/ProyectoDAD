@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.computadores.chat.Chat;
@@ -37,7 +38,7 @@ public class ChatController implements CommandLineRunner{
 	}
 	
 
-	@GetMapping("/inputchat")
+	@PostMapping("/inputchat")
 	public String insertarChat(Model model, @RequestParam String user1, String user2) {
 		Usuario u1 = usuarioRepo.findByNombre(user1).get(0);
 		Usuario u2 = usuarioRepo.findByNombre(user2).get(0);

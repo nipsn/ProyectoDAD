@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.computadores.usuario.Usuario;
@@ -36,7 +37,7 @@ public class ProductoController implements CommandLineRunner{
 	}
 	
 
-	@GetMapping("/inputproducto")
+	@PostMapping("/inputproducto")
 	public String insertarProducto(Model model, @RequestParam String precio, String categoria, String descripcion, String usuario) {
 
 		List<Usuario> p = usuarioRepo.findByNombre(usuario);		

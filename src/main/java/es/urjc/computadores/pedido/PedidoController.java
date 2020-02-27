@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.computadores.producto.Producto;
@@ -36,7 +37,7 @@ public class PedidoController implements CommandLineRunner{
 	public void init() {
 		
 	}
-	@GetMapping("producto/inputpedido/{productid}")
+	@PostMapping("producto/inputpedido/{productid}")
 	public String insertarPedido(Model model, @PathVariable Long productid, @RequestParam String origen,String destino, String remitente) {
 		Usuario user = usuarioRepo.findByNombre(remitente).get(0);
 		Producto p = productoRepo.findById(productid).get();
