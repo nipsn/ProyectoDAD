@@ -1,4 +1,6 @@
-package es.urjc.computadores;
+package es.urjc.computadores.usuario;
+
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -26,20 +29,27 @@ public class UsuarioController implements CommandLineRunner{
 		
 	}
 	
-	@GetMapping("/inputuser")
-	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
-		usuarioRepo.save(new Usuario(nombre,passwd));
-		return "greeting_template";
-	}
-	
-	@GetMapping("/SignUp")
+	@GetMapping("/registrar")
 	public String SignUp(Model model) {
 		return "SignUp";
 	}
 	
-	@GetMapping("/SignIn")
+	@PostMapping("/inputuser")
+	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
+		usuarioRepo.save(new Usuario(nombre,passwd));
+		return "SignUp";
+	}
+	
+	@GetMapping("/login")
 	public String SignIn(Model model) {
 		return "SignIn";
+	}
+	
+	@GetMapping("/listausuarios")
+	public String listarUsuarios(Model model) {
+		List<Usuario> lista = usuarioRepo.findAll();
+		model.addAttribute("datos", lista);
+		return "usuarios";
 	}
 	
 	@GetMapping("/usuario/{userid}")

@@ -1,4 +1,4 @@
-package es.urjc.computadores;
+package es.urjc.computadores.mensaje;
 
 import java.util.Date;
 

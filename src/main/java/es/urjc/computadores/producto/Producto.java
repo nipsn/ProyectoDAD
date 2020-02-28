@@ -1,6 +1,9 @@
-package es.urjc.computadores;
+package es.urjc.computadores.producto;
 
 import javax.persistence.*;
+
+import es.urjc.computadores.pedido.Pedido;
+import es.urjc.computadores.usuario.Usuario;
 
 @Entity
 public class Producto {

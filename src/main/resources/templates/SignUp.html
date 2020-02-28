@@ -23,43 +23,23 @@
     		<button class="btn btn-primary">Subir Producto</a>
 		</ul>
 	</nav>
-	<nav class="nav justify-content-center">
-  		<a class="nav-link" href="#">Tus Productos</a>
-  		<a class="nav-link" href="#">Chats</a>
-  		<a class="nav-link" href="#">Favoritos</a>
-  		<a class="nav-link" href="#">Envíos</a>
-	</nav>
 	<div class="container">
 		<br>
-		<h2>Tus Productos</h2>
+		<h2>Registro</h2>
 	</div>
 	<div class="container">
-		<table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Precio</th>
-        <th>Título</th>
-        <th>Categoría</th>
-        <th>Propietario</th>
-          <th></th>
-          <th></th>
-          <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    {{#productos}}
-      <tr>
-        <td>#{{precio}}</td>
-        <td>{{titulo}}</td>
-        <td>{{categoria}}</td>
-        <td>{{propietario}}</td>
-        <td><a href="/detalles?id={{id}}">Detalles</a></td>
-        <td><a href="/delete?id={{id}}">Delete</a></td>
-        <td><a href="/editar?id={{id}}">Editar</a></td>
-      </tr>
-     {{/productos}}
-    </tbody>
-  </table>
+		<form action="inputuser" method="POST">
+			<div class="form-group">
+		    	<label for="exampleInputEmail1">Nombre de usuario</label>
+		    	<input type="text" name='nombre' class="form-control"required>
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="exampleInputPassword1">Password</label>
+		    	<input type="password" name='passwd' class="form-control"required>
+		  	</div>
+		  	<input class="btn btn-primary" type="submit" value="Registrar">
+		  	<button type="submit" class="btn btn-success btn-sm">Iniciar Sesión</button>
+		</form>
 	</div>
 </body>
 </html>

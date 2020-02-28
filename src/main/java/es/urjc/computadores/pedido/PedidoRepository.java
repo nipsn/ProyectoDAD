@@ -1,4 +1,4 @@
-package es.urjc.computadores;
+package es.urjc.computadores.pedido;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
