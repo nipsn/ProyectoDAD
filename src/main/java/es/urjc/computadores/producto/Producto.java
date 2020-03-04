@@ -15,6 +15,7 @@ public class Producto {
 	private double precio;
 	private String categoria;
 	private String descripcion;
+	private String nombre;
 	@ManyToOne
 	private Usuario propietario;
 	
@@ -23,10 +24,11 @@ public class Producto {
 
 	public Producto() {}
 	
-	public Producto(double precio,String categoria, String descripcion, Usuario propietario) {
+	public Producto(double precio,String categoria, String descripcion, String nombre ,Usuario propietario) {
 		this.precio=precio;
 		this.categoria=categoria;
 		this.descripcion=descripcion;
+		this.nombre=nombre;
 		this.propietario=propietario;
 	}
 
@@ -59,6 +61,14 @@ public class Producto {
 
 	public Usuario getPropietario() {
 		return propietario;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	
