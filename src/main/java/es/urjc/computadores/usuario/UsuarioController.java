@@ -3,6 +3,7 @@ package es.urjc.computadores.usuario;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -35,13 +37,13 @@ public class UsuarioController implements CommandLineRunner{
 	}
 	
 	@PostMapping("/inputuser")
-	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
-		usuarioRepo.save(new Usuario(nombre,passwd));
+	public String insertarDato(Model model, @RequestParam String nombreRealIntroducido, String nombreInternoIntroducido, String correoIntroducido,String claveIntroducido) {
+		usuarioRepo.save(new Usuario(nombreRealIntroducido,claveIntroducido,nombreInternoIntroducido,correoIntroducido));
 		return "SignUp";
-	}
+	} 
 	
-	@GetMapping("/login")
-	public String SignIn(Model model) {
+	@RequestMapping("/login")
+	public String SignIn(Model model,HttpServletRequest request) {
 		return "SignIn";
 	}
 	

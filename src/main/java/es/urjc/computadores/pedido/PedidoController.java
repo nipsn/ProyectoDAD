@@ -39,7 +39,7 @@ public class PedidoController implements CommandLineRunner{
 	}
 	@PostMapping("producto/inputpedido/{productid}")
 	public String insertarPedido(Model model, @PathVariable Long productid, @RequestParam String origen,String destino, String remitente) {
-		Usuario user = usuarioRepo.findByNombre(remitente).get(0);
+		Usuario user = usuarioRepo.findByNombreInterno(remitente).get(0);
 		Producto p = productoRepo.findById(productid).get();
 		Pedido pedido = new Pedido(p,origen,destino,user);
 		pedidoRepo.save(pedido);

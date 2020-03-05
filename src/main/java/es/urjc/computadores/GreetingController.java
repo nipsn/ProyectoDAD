@@ -42,7 +42,9 @@ public class GreetingController implements CommandLineRunner{
 	
 	@GetMapping("/")
 	public String greeting(Model model) {
-		return "greeting_template";
+		List<Producto> lista = productoRepo.findAll();
+		model.addAttribute("productos", lista);
+		return "main";
 	}
 
 	
