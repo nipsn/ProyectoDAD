@@ -1,5 +1,6 @@
 package es.urjc.computadores.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
+	@Autowired
+	public UserRepositoryAuthProvider authenticationProvider;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
@@ -23,14 +26,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		
 		//Private pages
-		http.authorizeRequests().antMatchers("/listausuarios").hasAnyRole("ADMIN");
+		//http.authorizeRequests().antMatchers("/listausuarios").hasAnyRole("USER");
 		//http.authorizeRequests().anyRequest().authenticated();
 		
 		
 		//login form
 		http.formLogin().loginPage("/login");
-		http.formLogin().usernameParameter("nombreInternoIntroducido");
-		http.formLogin().passwordParameter("claveIntroducido");
+		http.formLogin().usernameParameter("username");
+		http.formLogin().passwordParameter("password");
 		http.formLogin().defaultSuccessUrl("/");//TODO: hay que ver a donde enviamos al usuairo cuando intenta acceder a partes privadas
 		http.formLogin().failureForwardUrl("/registrar");//hay que cambiar esto para que salga mensaje de error
 		
@@ -39,13 +42,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		
 		
-		http.csrf().disable();
+		//http.csrf().disable();
 		
 	}
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	// User
+		auth.authenticationProvider(authenticationProvider);
 	
 	}
 }

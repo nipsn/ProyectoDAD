@@ -42,6 +42,8 @@ public class UserRepositoryAuthProvider implements AuthenticationProvider {
 
 		Usuario user = userRepository.findByNombreInterno(username);
 
+		
+		
 		if (user == null) {
 			throw new BadCredentialsException("User not found");
 		}
@@ -55,7 +57,7 @@ public class UserRepositoryAuthProvider implements AuthenticationProvider {
 
 			List<GrantedAuthority> roles = new ArrayList<>();
 			for (String role : user.getRoles()) {
-				roles.add(new SimpleGrantedAuthority(role));
+				roles.add(new SimpleGrantedAuthority("ROLE_"+role));
 			}
 
 			return new UsernamePasswordAuthenticationToken(username, password, roles);

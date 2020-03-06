@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import es.urjc.computadores.chat.Chat;
@@ -40,7 +41,7 @@ public class Usuario {
 	private List<Pedido> pedidosVendidos;
 	
 	@OneToMany(mappedBy = "destinatario")
-	private List<Pedido> pedidosComprados;//distiguir con booleano o algo parecido el que ha llegado del que no
+	private List<Pedido> pedidosComprados;
 	
 	@OneToMany(mappedBy = "comprador",cascade= CascadeType.ALL)
 	private List<Chat> listaChatsComoComprador;//malos nombres. hay que cambiar
@@ -68,7 +69,7 @@ public class Usuario {
 	public Usuario(String nombreReal, String clave, String nombreInterno,String correo,boolean admin){
 		this.nombreReal = nombreReal;
 		this.nombreInterno=nombreInterno;
-		this.clave = clave;
+		this.clave =  new BCryptPasswordEncoder().encode(clave);
 		this.correo=correo;
 		productosEnVenta = new ArrayList<Producto>();
 		listaChatsComoComprador = new ArrayList<Chat>();
