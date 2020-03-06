@@ -12,7 +12,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		
-		//esta a medias a falta de ver que paginas hacer publicas y cuales privadas
 		
 		//Public pages
 		http.authorizeRequests().antMatchers("/registrar").permitAll();
@@ -30,8 +29,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		//login form
 		http.formLogin().loginPage("/login");
-		http.formLogin().usernameParameter("nombreInterno");
-		http.formLogin().passwordParameter("clave");
+		http.formLogin().usernameParameter("nombreInternoIntroducido");
+		http.formLogin().passwordParameter("claveIntroducido");
 		http.formLogin().defaultSuccessUrl("/");//TODO: hay que ver a donde enviamos al usuairo cuando intenta acceder a partes privadas
 		http.formLogin().failureForwardUrl("/registrar");//hay que cambiar esto para que salga mensaje de error
 		

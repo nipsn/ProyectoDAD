@@ -81,6 +81,13 @@ public class Usuario {
 			roles.add("ADMIN");
 	}
 
+	
+	
+	
+	public List<String> getRoles() {
+		return roles;
+	}
+
 	public long getId() {
 		return id;
 	}

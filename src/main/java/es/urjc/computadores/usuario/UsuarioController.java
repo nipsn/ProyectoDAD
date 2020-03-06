@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -39,11 +40,11 @@ public class UsuarioController implements CommandLineRunner{
 	@PostMapping("/inputuser")
 	public String insertarDato(Model model, @RequestParam String nombreRealIntroducido, String nombreInternoIntroducido, String correoIntroducido,String claveIntroducido) {
 		usuarioRepo.save(new Usuario(nombreRealIntroducido,claveIntroducido,nombreInternoIntroducido,correoIntroducido));
-		return "SignUp";
+		return "registrar";
 	} 
 	
-	@RequestMapping("/login")
-	public String SignIn(Model model,HttpServletRequest request) {
+	@GetMapping("/login")
+	public String SignIn(Model model) {
 		return "SignIn";
 	}
 	
