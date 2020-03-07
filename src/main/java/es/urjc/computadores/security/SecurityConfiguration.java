@@ -22,6 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/usuario/{id}").permitAll();
 		http.authorizeRequests().antMatchers("/producto{num}").permitAll();
+		http.authorizeRequests().antMatchers("/inputusuario").permitAll();
 		
 		
 		
@@ -39,10 +40,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		//logout
 		
-		
-		
-		
-		//http.csrf().disable();
 		
 	}
 	

@@ -18,7 +18,7 @@
 	
 	<body>
 			
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
   		<a class="navbar-brand" href="/">Market Place</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
@@ -66,30 +66,29 @@
 				        
 				    </select>
 				  </div>
-				
 				  <div class="form-group">
-				    <label for="exampleFormControlInput1">Usuario</label>
-				    <input type="text" name ='usuario' class="form-control" id="inputUsuario" placeholder="Usuario*"required>
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleFormControlInput1">Tìtulo</label>
-				    <input type="text"  name='tituloIntroducido' class="form-control" id="inputTitulo" placeholder="Título*"required>
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleFormControlTextarea1">Descripción</label>
-				    <textarea name='descripcionIntroducido' class="form-control" id="inputDescripcion" rows="3" placeholder="Descripción*"required></textarea>
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleFormControlInput1">Precio</label>
-				    <input type="text" name='precioIntroducido' class="form-control" id="inputPrecio" placeholder="Precio €*"required>
-				  </div>
-				  <ul class="nav justify-content-end">
-				  <input class="btn btn-primary" type="submit" value="Subir" method="POST">
-		    	 <button type="button" class="btn btn-danger">Cancelar</button>
-				 </ul>
-				 
+				    	<label for="exampleFormControlInput1">Usuario</label>
+				    	<input type="text" name ='usuario' class="form-control" id="inputUsuario" placeholder="Usuario*"required>
+				  	</div>
+				  	<div class="form-group">
+				    	<label for="exampleFormControlInput1">Tìtulo</label>
+				    	<input type="text"  name='tituloIntroducido' class="form-control" id="inputTitulo" placeholder="Título*"required>
+				  	</div>
+				  	<div class="form-group">
+				    	<label for="exampleFormControlTextarea1">Descripción</label>
+				    	<textarea name='descripcionIntroducido' class="form-control" id="inputDescripcion" rows="3" placeholder="Descripción*"required></textarea>
+				  	</div>
+				  	<div class="form-group">
+				    	<label for="exampleFormControlInput1">Precio</label>
+				    	<input type="text" name='precioIntroducido' class="form-control" id="inputPrecio" placeholder="Precio €*"required>
+				  	</div>
+				  	
+				 	<input class="btn btn-primary" type="submit" value="Subir" method="POST">
+				  	<input type="hidden" name="_csrf" value="{{token}}"/>
+		    	  	<button type="button" class="btn btn-danger">Cancelar</button>
+				 </form>
 			  </div>
-			</form>
+			
 			
 	</body>
 </html>
