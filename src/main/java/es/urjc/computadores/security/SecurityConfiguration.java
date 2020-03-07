@@ -22,13 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/usuario/{id}").permitAll();
 		http.authorizeRequests().antMatchers("/producto{num}").permitAll();
-		http.authorizeRequests().antMatchers("/inputusuario").permitAll();
+		http.authorizeRequests().antMatchers("/inputuser").permitAll();
 		
 		
 		
 		//Private pages
 		//http.authorizeRequests().antMatchers("/listausuarios").hasAnyRole("USER");
-		//http.authorizeRequests().anyRequest().authenticated();
+		http.authorizeRequests().anyRequest().authenticated();
 		
 		
 		//login form

@@ -56,7 +56,7 @@ public class Usuario {
 	public Usuario(String nombreReal, String clave, String nombreInterno,String correo){
 		this.nombreReal = nombreReal;
 		this.nombreInterno=nombreInterno;
-		this.clave = clave;
+		this.clave =  new BCryptPasswordEncoder().encode(clave);
 		this.correo=correo;
 		productosEnVenta = new ArrayList<Producto>();
 		listaChatsComoComprador = new ArrayList<Chat>();
