@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +40,7 @@ public class UsuarioController implements CommandLineRunner{
 	
 	@PostMapping("/inputuser")
 	public String insertarDato(Model model, @RequestParam String nombreRealIntroducido, String nombreInternoIntroducido, String correoIntroducido,String claveIntroducido) {
-		usuarioRepo.save(new Usuario(nombreRealIntroducido,claveIntroducido,nombreInternoIntroducido,correoIntroducido));
+		usuarioRepo.save(new Usuario(nombreRealIntroducido, new BCryptPasswordEncoder().encode(claveIntroducido),nombreInternoIntroducido,correoIntroducido));
 		return "registrar";
 	} 
 	
