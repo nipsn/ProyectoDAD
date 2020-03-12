@@ -1,4 +1,4 @@
-package es.urjc.computadores;
+package es.urjc.computadores.mensaje;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

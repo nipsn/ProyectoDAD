@@ -1,10 +1,13 @@
-package es.urjc.computadores;
+package es.urjc.computadores.chat;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+
+import es.urjc.computadores.mensaje.Mensaje;
+import es.urjc.computadores.usuario.Usuario;
 
 
 @Entity
