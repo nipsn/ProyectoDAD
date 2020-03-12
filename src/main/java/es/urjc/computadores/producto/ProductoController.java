@@ -64,6 +64,12 @@ public class ProductoController implements CommandLineRunner{
 		model.addAttribute("datos", lista);
 		return "productos";
 	}
-	
+	@GetMapping("/comprarproducto/{num}")
+	public String comprarProducto(Model model, @PathVariable Long num) {
+		Producto elegido = productoRepo.findById(num).get();
+		model.addAttribute("producto", elegido);
+
+		return "comprarproducto";
+	}
 }
 
