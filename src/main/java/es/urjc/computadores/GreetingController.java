@@ -49,7 +49,6 @@ public class GreetingController implements CommandLineRunner{
 		model.addAttribute("productos", lista);
 		
 		if(usuario.getLoggedUser() != null) {
-			System.out.println("USUARIO REGISTRADO: " + usuario.getLoggedUser().getNombreReal());
 			model.addAttribute("user",usuario.getLoggedUser());
 			model.addAttribute("nombreUser",usuario.getLoggedUser().getNombreReal());
 		}

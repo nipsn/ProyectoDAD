@@ -37,20 +37,18 @@ public class ProductoController implements CommandLineRunner{
 	}
 	
 
-	//@PostMapping("/inputproducto")
-	//public String insertarProducto(Model model, @RequestParam String precioIntroducido, String tituloIntroducido,String categoriaIntroducido, String descripcionIntroducido, String usuario) {
+	@PostMapping("/inputproducto")
+	public String insertarProducto(Model model, @RequestParam String precio, String categoria, String descripcion, String usuario, String nombre) {
 
-		//List<Usuario> p = usuarioRepo.findByNombreInterno(usuario);		
-		//Producto p1 = new Producto(Double.parseDouble(precioIntroducido),categoriaIntroducido,tituloIntroducido,descripcionIntroducido,p.get(0));		
-		//productoRepo.save(p1);
-		//return "subirproducto";
-	//}
+		List<Usuario> p = usuarioRepo.findByNombre(usuario);		
+		Producto p1 = new Producto(Double.parseDouble(precio),categoria,descripcion,nombre,p.get(0));		
+		productoRepo.save(p1);
+		return "subirproducto";
+	}
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
 		
-		
 		Producto elegido = productoRepo.findById(num).get();
-
 		model.addAttribute("producto", elegido);
 
 		return "producto";
@@ -66,6 +64,12 @@ public class ProductoController implements CommandLineRunner{
 		model.addAttribute("datos", lista);
 		return "productos";
 	}
-	
+	@GetMapping("/comprarproducto/{num}")
+	public String comprarProducto(Model model, @PathVariable Long num) {
+		Producto elegido = productoRepo.findById(num).get();
+		model.addAttribute("producto", elegido);
+
+		return "comprarproducto";
+	}
 }
 
