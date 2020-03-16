@@ -16,7 +16,7 @@
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
 {{#producto}}
-<title>{{titulo}}</title>{{/producto}}
+<title>{{nombre}}</title>{{/producto}}
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,27 +40,20 @@
 		</ul>
 	</nav>
 	<br>
-	<div class="container">
-		{{#producto}}
-		<div class="card text-center">
-			<div class="card-header">
-				<p>
-					<a href="/usuario/{{propietario.id}}">Propietario</a>
-				</p>
-			</div>
-			<div class="card-body">
-				<h5 class="card-title">{{titulo}}</h5>
-				<p class="card-text">{{descripcion}}</p>
-				<a href="/comprarproducto/{{id}}" class="btn btn-primary">Hacer Pedido</a>
-			</div>
-			<div class="card-footer text-muted">{{categoria}}</div>
-		</div>
+	{{#producto}}
+	<div class="text-center">
+	<h2>Vas a comprar {{nombre}}</h2>
+	<h4>Categoria: {{categoria}}</h4>
+	<br>
+	<p>
+		{{descripcion}}
+	</p>
+	<br>
+	<a href="/usuario/{{propietario.id}}">Propietario: {{propietario.nombre}}</a>
+	<br>
+	<br>
+	<a href="#" class="btn btn-primary">Confirmar Pedido</a>
 	</div>
-	<!-- <form action="inputpedido/{{id}}" method="POST">
-		<input type='text' name='origen' />origen <input type='text'
-			name='destino' />destino <input type='text' name='remitente' />tu
-		nombre de usuario <input type='submit' value='Hacer pedido'>
-	</form> -->
 	{{/producto}}
 </body>
 </html>

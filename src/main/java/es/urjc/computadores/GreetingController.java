@@ -28,6 +28,9 @@ public class GreetingController implements CommandLineRunner{
 	private ProductoRepository productoRepo;
 	@Autowired
 	private UsuarioRepository usuarioRepo;
+	
+	@Autowired
+	private UserComponent usuario;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -42,7 +45,14 @@ public class GreetingController implements CommandLineRunner{
 	
 	@GetMapping("/")
 	public String greeting(Model model) {
-		return "greeting_template";
+		List<Producto> lista = productoRepo.findAll();
+		model.addAttribute("productos", lista);
+		
+		if(usuario.getLoggedUser() != null) {
+			model.addAttribute("user",usuario.getLoggedUser());
+			model.addAttribute("nombreUser",usuario.getLoggedUser().getNombreReal());
+		}
+		return "main";
 	}
 
 	

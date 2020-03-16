@@ -3,13 +3,18 @@ package es.urjc.computadores.usuario;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -28,16 +33,16 @@ public class UsuarioController implements CommandLineRunner{
 		
 	}
 	
-	@GetMapping("/registrar")
+	@RequestMapping("/registrar")
 	public String SignUp(Model model) {
 		return "SignUp";
 	}
 	
-	@GetMapping("/inputuser")
-	public String insertarDato(Model model, @RequestParam String nombre, String passwd) {
-		usuarioRepo.save(new Usuario(nombre,passwd));
-		return "SignUp";
-	}
+	@PostMapping("/inputuser")
+	public String insertarDato(Model model, @RequestParam String nombreRealIntroducido, String nombreInternoIntroducido, String correoIntroducido,String claveIntroducido) {
+		usuarioRepo.save(new Usuario(nombreRealIntroducido, new BCryptPasswordEncoder().encode(claveIntroducido),nombreInternoIntroducido,correoIntroducido));
+		return "registrar";
+	} 
 	
 	@GetMapping("/login")
 	public String SignIn(Model model) {

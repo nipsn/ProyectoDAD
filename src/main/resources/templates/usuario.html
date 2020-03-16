@@ -31,7 +31,7 @@
 	</nav>
 	<div class="container">
 		<br>
-		<h2>Productos de {{usuario.nombre}}</h2>
+		<h2>Productos de {{usuario.nombreReal}}</h2>
 	</div>
 	<div class="container">
 		<table class="table table-hover">
@@ -49,10 +49,10 @@
     <tbody>
     {{#productos}}
       <tr>
-        <td>#{{precio}}</td>
+        <td>{{precio}}€</td>
         <td>{{descripcion}}</td>
         <td>{{categoria}}</td>
-        <td></td>
+        <td>{{usuario.nombreReal}}</td>
         <td><a href="/producto/{{id}}">Detalles</a></td>
         <td><a href="">Delete</a></td>
         <td><a href="">Editar</a></td>
