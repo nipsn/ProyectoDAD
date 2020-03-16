@@ -16,7 +16,6 @@ public class Pedido {
 	private long id;
 	
 	private double precio;
-	private String DireccionOrigen;
 	private String DireccionDestino;
 	private Date fecha;
 	
@@ -31,12 +30,11 @@ public class Pedido {
 	
 	public Pedido() {}
 	
-	public Pedido(Producto producto, String DireccionOrigen,String DireccionDestino, Usuario remitente) {
-		this.DireccionOrigen=DireccionOrigen;
+	public Pedido(Producto producto,String DireccionDestino, Usuario destinatario) {
 		this.DireccionDestino=DireccionDestino;
 		this.fecha=new Date();
-		this.destinatario = producto.getPropietario();
-		this.remitente = remitente;
+		this.destinatario = destinatario;
+		this.remitente = producto.getPropietario();
 		this.precio = producto.getPrecio();
 	}
 
@@ -50,14 +48,6 @@ public class Pedido {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
-	}
-
-	public String getDireccionOrigen() {
-		return DireccionOrigen;
-	}
-
-	public void setDireccionOrigen(String direccionOrigen) {
-		DireccionOrigen = direccionOrigen;
 	}
 
 	public String getDireccionDestino() {

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.computadores.producto.Producto;
 import es.urjc.computadores.producto.ProductoRepository;
+import es.urjc.computadores.usuario.UserComponent;
 import es.urjc.computadores.usuario.Usuario;
 import es.urjc.computadores.usuario.UsuarioRepository;
 
@@ -26,7 +27,9 @@ public class PedidoController implements CommandLineRunner{
 	private ProductoRepository productoRepo;
 	@Autowired
 	private UsuarioRepository usuarioRepo;
-
+	
+	@Autowired
+	private UserComponent usuario;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -38,12 +41,14 @@ public class PedidoController implements CommandLineRunner{
 		
 	}
 	@PostMapping("producto/inputpedido/{productid}")
-	public String insertarPedido(Model model, @PathVariable Long productid, @RequestParam String origen,String destino, String remitente) {
-		Usuario user = usuarioRepo.findByNombreInterno(remitente);
-		Producto p = productoRepo.findById(productid).get();
-		Pedido pedido = new Pedido(p,origen,destino,user);
-		pedidoRepo.save(pedido);
-		model.addAttribute("producto", p);
+	public String insertarPedido(Model model, @PathVariable Long productid, @RequestParam String destino) {
+		
+		if(usuario.getLoggedUser() != null) {
+			Producto p = productoRepo.findById(productid).get();
+			Pedido pedido = new Pedido(p,destino,usuario.getLoggedUser());
+			pedidoRepo.save(pedido);
+			model.addAttribute("producto", p); 
+		}
 		return "producto";
 	}
 	@GetMapping("/{id}/gestionenvios")
