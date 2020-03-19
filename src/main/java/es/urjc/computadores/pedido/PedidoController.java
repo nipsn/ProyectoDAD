@@ -1,6 +1,7 @@
 package es.urjc.computadores.pedido;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -16,6 +17,7 @@ import es.urjc.computadores.producto.ProductoRepository;
 import es.urjc.computadores.usuario.UserComponent;
 import es.urjc.computadores.usuario.Usuario;
 import es.urjc.computadores.usuario.UsuarioRepository;
+import org.springframework.security.web.csrf.CsrfToken;
 
 @Controller
 public class PedidoController implements CommandLineRunner{
@@ -40,22 +42,46 @@ public class PedidoController implements CommandLineRunner{
 	public void init() {
 		
 	}
-	@PostMapping("producto/inputpedido/{productid}")
+	/*@PostMapping("/inputpedido/{productid}")
 	public String insertarPedido(Model model, @PathVariable Long productid, @RequestParam String destino) {
+		System.out.println("Producto:"+productid+ "Destino:"+destino);
+		Usuario user = usuario.getLoggedUser();
+		Producto p = productoRepo.findById(productid).get();
+		Pedido pedido = new Pedido(p,destino,user);
+		pedidoRepo.save(pedido);
+		model.addAttribute("producto", p);
+		return "producto";
+	}*/
+	/*@PostMapping("/inputpedido/{productid}")
+	public String insertarPedido(Model model, Pedido pedido) {
+		//if(usuario.getLoggedUser() != null) {
+		
+		//Pedido pedido = new Pedido(p,destino,usuario.getLoggedUser());
+		model.addAttribute("pedido", pedido); 
+	//}
+		
+			pedidoRepo.save(pedido);
+			//model.addAttribute("producto", p); 
+		
+		return "";
+	}*/
+	
+	/*@GetMapping("/inputpedido/{pruductid}")
+	public String prepararPedido(Model model,@PathVariable Long productid, @RequestParam String destino,HttpServletRequest request) {
 		
 		if(usuario.getLoggedUser() != null) {
 			Producto p = productoRepo.findById(productid).get();
 			Pedido pedido = new Pedido(p,destino,usuario.getLoggedUser());
-			pedidoRepo.save(pedido);
-			model.addAttribute("producto", p); 
+			model.addAttribute("pedido", pedido); 
 		}
-		return "producto";
-	}
+		return "inputpedido";
+	}*/
+
 	@GetMapping("/{id}/gestionenvios")
 	public String gestionenvios(Model model,@PathVariable Long id) {
 		Usuario u = usuarioRepo.findById(id).get();
-		model.addAttribute("vendidos", u.getProductosVendidos());
-		model.addAttribute("comprados", u.getProductosComprados());
+		//model.addAttribute("vendidos", u.getProductosVendidos());
+	//	model.addAttribute("comprados", u.getProductosComprados());
 		model.addAttribute("userid", u.getId());
 		
 		return "gestionenvios";

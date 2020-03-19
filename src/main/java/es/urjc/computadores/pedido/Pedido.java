@@ -33,6 +33,7 @@ public class Pedido {
 	public Pedido(Producto producto,String DireccionDestino, Usuario destinatario) {
 		this.DireccionDestino=DireccionDestino;
 		this.fecha=new Date();
+		this.producto=producto;
 		this.destinatario = destinatario;
 		this.remitente = producto.getPropietario();
 		this.precio = producto.getPrecio();

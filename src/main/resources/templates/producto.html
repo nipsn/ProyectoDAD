@@ -46,14 +46,17 @@
 			<div class="card-header">
 				<p>
 					<a href="/usuario/{{propietario.id}}">Propietario</a>
+					<div class="card-footer text-muted">{{categoria}}</div>
 				</p>
 			</div>
 			<div class="card-body">
 				<h5 class="card-title">{{titulo}}</h5>
 				<p class="card-text">{{descripcion}}</p>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+				
 				<a href="/comprarproducto/{{id}}" class="btn btn-primary">Hacer Pedido</a>
 			</div>
-			<div class="card-footer text-muted">{{categoria}}</div>
+			
 		</div>
 	</div>
 	<!-- <form action="inputpedido/{{id}}" method="POST">

@@ -38,10 +38,10 @@ public class Usuario {
 	private List<Producto> productosEnVenta;
 	
 	@OneToMany(mappedBy = "remitente")
-	private List<Pedido> pedidosVendidos;
+	private List<Pedido> pedidosVendidos= new ArrayList<Pedido>();;
 	
 	@OneToMany(mappedBy = "destinatario")
-	private List<Pedido> pedidosComprados;
+	private List<Pedido> pedidosComprados= new ArrayList<Pedido>();
 	
 	@OneToMany(mappedBy = "comprador",cascade= CascadeType.ALL)
 	private List<Chat> listaChatsComoComprador;//malos nombres. hay que cambiar
