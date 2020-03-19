@@ -38,7 +38,7 @@ import org.springframework.security.web.csrf.CsrfToken;
 @Controller
 public class PedidoController implements CommandLineRunner{
 	
-	public static final String OUTPUT_DIR = "src/main/resources/facturas/";
+	public static final String OUTPUT_DIR = "src/main/resources/static/";
 	
 	@Autowired
 	private PedidoRepository pedidoRepo;
@@ -96,45 +96,20 @@ public class PedidoController implements CommandLineRunner{
 
 	@GetMapping("/{id}/gestionenvios")
 	public String gestionenvios(Model model,@PathVariable Long id) {
-		Usuario u = usuarioRepo.findById(id).get();
-		//model.addAttribute("vendidos", u.getProductosVendidos());
-	//	model.addAttribute("comprados", u.getProductosComprados());
-		model.addAttribute("userid", u.getId());
+		model.addAttribute("vendidos", usuario.getLoggedUser().getPedidosVendidos());
+		model.addAttribute("comprados", usuario.getLoggedUser().getPedidosComprados());
+		model.addAttribute("userid", usuario.getLoggedUser().getId());
 		
 		return "gestionenvios";
 	}
-	@RequestMapping("/descargar/{fileName:.+}")
-	public void downloadPDFResource(HttpServletRequest request, HttpServletResponse response,
-			@PathVariable("fileName") String fileName) throws IOException {
 
-		File file = new File("/src/main/resources/facturas/" + fileName);
-		System.out.print("/src/main/resources/facturas/" + fileName);
-		if (file.exists()) {
-
-			//get the mimetype
-			String mimeType = URLConnection.guessContentTypeFromName(file.getName());
-			if (mimeType == null) {
-				//unknown mimetype so set the mimetype to application/octet-stream
-				mimeType = "application/octet-stream";
-			}
-
-			response.setContentType(mimeType);
-
-			response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() + "\""));
-
-			response.setContentLength((int) file.length());
-
-			InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
-
-			FileCopyUtils.copy(inputStream, response.getOutputStream());
-
-		}
-	}
 	@GetMapping("/generarfactura")
 	public String generarFactura(Model model, @RequestParam int id) {
 		new Thread(() -> {comunicarServicioInternoPDF(id);}).start();
-		
-		return "/";
+		model.addAttribute("vendidos", usuario.getLoggedUser().getPedidosVendidos());
+		model.addAttribute("comprados", usuario.getLoggedUser().getPedidosComprados());
+		model.addAttribute("userid", usuario.getLoggedUser().getId());
+		return "gestionenvios";
 	}
 	
 	private void comunicarServicioInternoPDF(int pedidoId) {

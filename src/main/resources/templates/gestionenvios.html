@@ -58,11 +58,16 @@
             				<td>
             					{{precio}}
             				</td>
-            				<form action="/generarfactura">
-		  						<button type="submit" class="btn btn-primary">Generar Factura</button>
-		  						<input type="hidden" name="_csrf" value="{{token}}"/>
-		  						<input type="hidden" name="id" value="{{id}}"/>
-            				</form>
+            				<td>
+            					<form action="/generarfactura">
+		  							<input type="hidden" name="_csrf" value="{{token}}"/>
+		  							<input type="hidden" name="id" value="{{id}}"/>
+		  							<button type="submit" class="btn btn-primary">Generar Factura</button>
+            					</form>
+            				</td>
+            				<td>
+            					<a href="/factura{{id}}.pdf" download>Ver factura</a>
+            				</td>
             			</tr>
             		{{/vendidos}}
            		</table>
@@ -82,10 +87,13 @@
             				</td>
             				<td>
             					<form action="/generarfactura">
-		  							<button type="submit" class="btn btn-primary">Generar Factura</button>
 		  							<input type="hidden" name="_csrf" value="{{token}}"/>
 		  							<input type="hidden" name="id" value="{{id}}"/>
+		  							<button type="submit" class="btn btn-primary">Generar Factura</button>
             					</form>
+            				</td>
+            				<td>
+            					<a href="/factura{{id}}.pdf" download>Ver factura</a>
             				</td>
             			</tr>
             		{{/comprados}}

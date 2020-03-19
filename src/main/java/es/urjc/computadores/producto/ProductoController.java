@@ -48,13 +48,15 @@ public class ProductoController implements CommandLineRunner{
 	
 
 	@PostMapping("/inputproducto")
-		public String insertarProducto(Model model, @RequestParam String precioIntroducido, String tituloIntroducido,String categoriaIntroducido, String descripcionIntroducido) {
+	public String insertarProducto(Model model, @RequestParam String precioIntroducido, String tituloIntroducido,String categoriaIntroducido, String descripcionIntroducido) {
 
-		Usuario p = usuarioRepo.findByNombreInterno(usuario.getLoggedUser().getNombreInterno());		
-			Producto p1 = new Producto(Double.parseDouble(precioIntroducido),categoriaIntroducido,tituloIntroducido,descripcionIntroducido,p);		
-			productoRepo.save(p1);
-			return "subirproducto";
-		}
+
+		System.out.println("usuario logueado: " + usuario.getLoggedUser().getId() + " " + usuario.getLoggedUser().getNombreInterno());		
+		Producto p1 = new Producto(Double.parseDouble(precioIntroducido),categoriaIntroducido,tituloIntroducido,descripcionIntroducido,usuario.getLoggedUser());		
+		productoRepo.save(p1);
+		model.addAttribute("id", usuario.getLoggedUser().getId());
+		return "subirproducto";
+	}
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
 		
