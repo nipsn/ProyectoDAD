@@ -133,6 +133,7 @@ public class PedidoController implements CommandLineRunner{
 	@GetMapping("/generarfactura")
 	public String generarFactura(Model model, @RequestParam int id) {
 		new Thread(() -> {comunicarServicioInternoPDF(id);}).start();
+		
 		return "/";
 	}
 	
