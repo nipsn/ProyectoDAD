@@ -39,47 +39,26 @@
 			<a class="btn btn-primary">Subir Producto<a>
 		</ul>
 	</nav>
-	
+	<br>
 	<div class="container">
-
-			<br>
-				{{#producto}}
-				<div class="text-center">
-				<h4>Categoria: {{categoria}}</h4>
-					<h2>Vas a comprar {{titulo}}</h2>
-					
-				<br>
+		<div class="card text-center">
+			<div class="card-header">
 				<p>
-					{{descripcion}}
+					<h2>¡Pedido realizado con éxito!</h2>
 				</p>
+			</div>
+			<div class="card-body">
 				
-				<br>
-				<br>
-					<a href="/usuario/{{propietario.id}}">Propietario: {{propietario.nombreReal}}</a>
-				<br>
-				<br>
-				<div class="container">
-		<br>
-		<h2>Rellena los datos de entrega</h2>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+				<a class="btn btn-success mr-1" href="/">Aceptar</a>
+				
+			</div>
+			
+		</div>
 	</div>
-	<div class="container">
-		<form action="inputpedido" method="POST">
-			<div class="form-group">
-		    	<label for="exampleInputEmail1">Calle, numero y piso</label>
-		    	<input type="text" name='destino' class="form-control"required>
-		    	<label for="exampleInputEmail1">Código postal</label>
-		    	<input type="text" name='destino' class="form-control"required>
-		    	<label for="exampleInputEmail1">Localidad</label>
-		    	<input type="text" name='destino' class="form-control"required>
-		  	</div>
-		  	
-		  	<input type="hidden" name='productid' value="{{producto.id}}"/>
-		  	<input class="btn btn-primary" type="submit" value="Confirmar" method="POST">
-		  	<input type="hidden" name="_csrf" value="{{token}}"/>
-		  	{{/producto}}
-		</form>
-		
-	</div>
-	
+
 </body>
 </html>
+
+
+

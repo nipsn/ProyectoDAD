@@ -22,6 +22,7 @@ public class UsuarioController implements CommandLineRunner{
 
 	@Autowired
 	private UsuarioRepository usuarioRepo;
+
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -62,5 +63,9 @@ public class UsuarioController implements CommandLineRunner{
 		model.addAttribute("usuario", elegido);
 		model.addAttribute("productos", elegido.getProductosEnVenta());
 		return "usuario";
+	}
+	@GetMapping("/loginerror")
+	public String SignInError(Model model) {
+		return "SignIn";
 	}
 }

@@ -36,10 +36,18 @@
 		</div>
 		<ul class="nav justify-content-end">
 			<a class="btn btn-success mr-1" href="registrar">Registrarse</a>
-			<a class="btn btn-primary" href="subirproducto">Subir Producto<a>
+			<a class="btn btn-primary" href="login">Iniciar Sesión</a>
 		</ul>
 	</nav>
 	<br>
+	{{#user}}
+	<nav class="nav justify-content-center">
+  		<a class="nav-link" href="/usuario/{{id}}">Tus Productos</a>
+  		<a class="nav-link" href="/{{id}}/chats">Chats</a>
+  		<a class="nav-link" href="/subirproducto">Subir Producto</a>
+  		<a class="nav-link" href="/{{id}}/gestionenvios">Envíos</a>
+	</nav>
+	{{/user}}
 	<div class="text-center">
 		<h2>Bienvenido a Marketplace{{#user}}, {{nombreUser}} {{/user}}</h2>
 		<p>Tu tienda favorita donde podrás vender y comprar cosas inútiles</p>

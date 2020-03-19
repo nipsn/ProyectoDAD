@@ -36,9 +36,9 @@
 	</nav>
 	<nav class="nav justify-content-center">
   		<a class="nav-link" href="/usuario/{{userid}}">Tus Productos</a>
-  		<a class="nav-link" href="#">Chats</a>
-  		<a class="nav-link" href="#">Favoritos</a>
-  		<a class="nav-link" href="#">Envíos</a>
+  		<a class="nav-link" href="/{{userid}}/chats">Chats</a>
+  		<a class="nav-link" href="/subirproducto">Subir Producto</a>
+  		<a class="nav-link" href="/{{userid}}/gestionenvios">Envíos</a>
 	</nav>
 	
 	
@@ -46,7 +46,6 @@
 	<div class="container">
 	<br>
 			<h2>Productos vendidos</h2>
-					<form>
 					<table>
             		{{#vendidos}}
             			<tr>
@@ -59,12 +58,15 @@
             				<td>
             					{{precio}}
             				</td>
+            				<form action="/generarfactura">
+		  						<button type="submit" class="btn btn-primary">Generar Factura</button>
+		  						<input type="hidden" name="_csrf" value="{{token}}"/>
+		  						<input type="hidden" name="id" value="{{id}}"/>
+            				</form>
             			</tr>
             		{{/vendidos}}
            		</table>
-					</form>
 			<h2>Productos comprados</h2>
-					<form>
 					<table>
             		{{#comprados}}
             			<tr>
@@ -78,10 +80,16 @@
             				<td>
             					{{precio}}
             				</td>
+            				<td>
+            					<form action="/generarfactura">
+		  							<button type="submit" class="btn btn-primary">Generar Factura</button>
+		  							<input type="hidden" name="_csrf" value="{{token}}"/>
+		  							<input type="hidden" name="id" value="{{id}}"/>
+            					</form>
+            				</td>
             			</tr>
             		{{/comprados}}
            		</table>
-			</form>
 		</div>
 	</body>	
 </html>
