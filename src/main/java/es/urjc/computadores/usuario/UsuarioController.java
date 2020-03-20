@@ -22,6 +22,9 @@ public class UsuarioController implements CommandLineRunner{
 
 	@Autowired
 	private UsuarioRepository usuarioRepo;
+	
+	@Autowired
+	private UserComponent usuariologueado;
 
 	
 	@Override
@@ -62,6 +65,7 @@ public class UsuarioController implements CommandLineRunner{
 		Usuario elegido = usuarioRepo.findById(userid).get();
 		model.addAttribute("usuario", elegido);
 		model.addAttribute("productos", elegido.getProductosEnVenta());
+		model.addAttribute("user", usuariologueado);
 		return "usuario";
 	}
 	@GetMapping("/loginerror")

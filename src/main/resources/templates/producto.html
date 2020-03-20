@@ -61,7 +61,14 @@
 				<h5 class="card-title">{{titulo}}</h5>
 				<p class="card-text">{{descripcion}}</p>
 				<input type="hidden" name="_csrf" value="{{token}}"/>
-				
+				{{#user}}
+				<form method="POST" action="/inputchat">
+					<input type="submit" value="Contactar"  class="btn btn-primary"/>
+					<input type="hidden" name="idpropietario" value="{{propietario.id}}"/>
+					<input type="hidden" name="idlogin" value="{{userid}}"/>
+					<input type="hidden" name="_csrf" value="{{token}}"/>
+				</form>
+				{{/user}}
 				<a href="/comprarproducto/{{id}}" class="btn btn-primary">Hacer Pedido</a>
 			</div>
 			

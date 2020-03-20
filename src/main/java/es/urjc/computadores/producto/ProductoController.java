@@ -63,19 +63,14 @@ public class ProductoController implements CommandLineRunner{
 		Producto elegido = productoRepo.findById(num).get();
 		model.addAttribute("producto", elegido);
 
+		model.addAttribute("user",usuario.getLoggedUser());
+		model.addAttribute("userid", usuario.getLoggedUser().getId());
 		return "producto";
 	}
 	@GetMapping("/subirproducto")
 	public String subirProducto(Model model) {
 		model.addAttribute("id",usuario.getLoggedUser().getId());//para tener la varibale id del usuario que ha inicio sesion en la vista de subir producto
 		return "subirproducto";
-	}
-	
-	@GetMapping("/listaproductos")
-	public String listarproductos(Model model) {
-		List<Producto> lista = productoRepo.findAll();
-		model.addAttribute("datos", lista);
-		return "productos";
 	}
 	@RequestMapping("/comprarproducto/{num}")
 	public String comprarProducto(Model model, @PathVariable Long num) {
