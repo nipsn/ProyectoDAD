@@ -34,10 +34,10 @@
 		</ul>
 	</nav>
 	<nav class="nav justify-content-center">
-  		<a class="nav-link" href="#">Tus Productos</a>
-  		<a class="nav-link" href="#">Chats</a>
-  		<a class="nav-link" href="#">Favoritos</a>
-  		<a class="nav-link" href="#">Envíos</a>
+  		<a class="nav-link" href="/usuario/{{id}}">Tus Productos</a>
+  		<a class="nav-link" href="/{{id}}/chats">Chats</a>
+  		<a class="nav-link" href="/subirproducto">Subir Producto</a>
+  		<a class="nav-link" href="/{{id}}/gestionenvios">Envíos</a>
 	</nav>
 	
 	
@@ -68,7 +68,7 @@
 				  </div>
 				  <div class="form-group">
 				    	<label for="exampleFormControlInput1">Usuario</label>
-				    	<input type="text" name ='usuario' class="form-control" id="inputUsuario" placeholder="Usuario*"required>
+				    	<input type="text" name ='usuarioIntroducido' class="form-control" id="inputUsuario" placeholder="Usuario*"required>
 				  	</div>
 				  	<div class="form-group">
 				    	<label for="exampleFormControlInput1">Tìtulo</label>
@@ -83,11 +83,12 @@
 				    	<input type="text" name='precioIntroducido' class="form-control" id="inputPrecio" placeholder="Precio €*"required>
 				  	</div>
 				  	
-				 	<input class="btn btn-primary" type="submit" value="Subir" method="POST">
+				 	<input class="btn btn-primary" type="submit" value="Subir">
 				  	<input type="hidden" name="_csrf" value="{{token}}"/>
-		    	  	<button type="button" class="btn btn-danger">Cancelar</button>
+		    	  	<button type="button" href="/" class="btn btn-danger">Cancelar</button>
 				 </form>
 			  </div>
+			
 			
 			
 	</body>

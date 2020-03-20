@@ -41,29 +41,24 @@
 	</nav>
 	<br>
 	<div class="container">
-		{{#producto}}
 		<div class="card text-center">
 			<div class="card-header">
 				<p>
-					<a href="/usuario/{{propietario.id}}">Propietario</a>
-					<div class="card-footer text-muted">{{categoria}}</div>
+					<h2>¡Pedido realizado con éxito!</h2>
 				</p>
 			</div>
 			<div class="card-body">
-				<h5 class="card-title">{{titulo}}</h5>
-				<p class="card-text">{{descripcion}}</p>
-				<input type="hidden" name="_csrf" value="{{token}}"/>
 				
-				<a href="/comprarproducto/{{id}}" class="btn btn-primary">Hacer Pedido</a>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+				<a class="btn btn-success mr-1" href="/">Aceptar</a>
+				
 			</div>
 			
 		</div>
 	</div>
-	<form action="inputpedido/{{id}}" method="POST">
-		<input type='text' name='origen' />origen <input type='text'
-			name='destino' />destino <input type='text' name='remitente' />tu
-		nombre de usuario <input type='submit' value='Hacer pedido'>
-	</form>
-	{{/producto}}
+
 </body>
 </html>
+
+
+

@@ -36,12 +36,20 @@
 		</div>
 		<ul class="nav justify-content-end">
 			<a class="btn btn-success mr-1" href="registrar">Registrarse</a>
-			<a class="btn btn-primary" href="subirproducto">Subir Producto<a>
+			<a class="btn btn-primary" href="login">Iniciar Sesión</a>
 		</ul>
 	</nav>
 	<br>
+	{{#user}}
+	<nav class="nav justify-content-center">
+  		<a class="nav-link" href="/usuario/{{id}}">Tus Productos</a>
+  		<a class="nav-link" href="/{{id}}/chats">Chats</a>
+  		<a class="nav-link" href="/subirproducto">Subir Producto</a>
+  		<a class="nav-link" href="/{{id}}/gestionenvios">Envíos</a>
+	</nav>
+	{{/user}}
 	<div class="text-center">
-		<h2>Bienvenido a Marketplace, {{nombreUser}}</h2>
+		<h2>Bienvenido a Marketplace{{#user}}, {{nombreUser}} {{/user}}</h2>
 		<p>Tu tienda favorita donde podrás vender y comprar cosas inútiles</p>
 		<br>
 		<div class="btn-group" role="group"
@@ -58,9 +66,18 @@
 				<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false">Categoria</button>
 				<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-					<a class="dropdown-item">Dropdown link</a> 
-					<a class="dropdown-item">Dropdown link</a> 
-					<a class="dropdown-item">Dropdown link</a>
+					<a class="dropdown-item">Coches</a> 
+					<a class="dropdown-item">Motos</a> 
+					<a class="dropdown-item">Informática y tegnología</a>
+					<a class="dropdown-item">Electrodomesticos</a> 
+					<a class="dropdown-item">Aficiones</a> 
+					<a class="dropdown-item">Deportes</a>
+					<a class="dropdown-item">Música</a> 
+					<a class="dropdown-item">Mascotas</a> 
+					<a class="dropdown-item">Moda</a>
+					<a class="dropdown-item">Hogar y jardin</a> 
+					<a class="dropdown-item">Videojuegos y consolas</a> 
+					<a class="dropdown-item">Otros</a>
 				</div>
 			</div>
 			<div class="btn-group" role="group">
