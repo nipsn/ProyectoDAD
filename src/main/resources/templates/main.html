@@ -37,6 +37,10 @@
 		<ul class="nav justify-content-end">
 			<a class="btn btn-success mr-1" href="registrar">Registrarse</a>
 			<a class="btn btn-primary" href="login">Iniciar Sesión</a>
+			<form method="post" action="/logout">
+				<input type="submit" value="Sign Out"  class="btn btn-primary"/>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
 		</ul>
 	</nav>
 	<br>
