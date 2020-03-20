@@ -33,10 +33,11 @@
 					placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 			</form>
-		</div>
-		<ul class="nav justify-content-end">
-			<a class="btn btn-success mr-1" href="registrar">Registrarse</a>
-			<a class="btn btn-primary">Subir Producto<a>
+		</div><ul class="nav justify-content-end">
+			<form method="post" action="/logout">
+				<input type="submit" value="Sign Out"  class="btn btn-danger"/>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
 		</ul>
 	</nav>
 	<br>

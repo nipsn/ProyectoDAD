@@ -35,8 +35,16 @@
 			</form>
 		</div>
 		<ul class="nav justify-content-end">
+			{{^user}}
 			<a class="btn btn-success mr-1" href="registrar">Registrarse</a>
-			<a class="btn btn-primary">Subir Producto<a>
+			<a class="btn btn-primary" href="login">Iniciar Sesión</a>
+			{{/user}}
+			{{#user}}
+			<form method="post" action="/logout">
+				<input type="submit" value="Sign Out"  class="btn btn-danger"/>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
+			{{/user}}
 		</ul>
 	</nav>
 	<br>
