@@ -48,10 +48,7 @@ public class ProductoController implements CommandLineRunner{
 	
 
 	@PostMapping("/inputproducto")
-	public String insertarProducto(Model model, @RequestParam String precioIntroducido, String tituloIntroducido,String categoriaIntroducido, String descripcionIntroducido) {
-
-
-		System.out.println("usuario logueado: " + usuario.getLoggedUser().getId() + " " + usuario.getLoggedUser().getNombreInterno());		
+	public String insertarProducto(Model model, @RequestParam String precioIntroducido, String tituloIntroducido,String categoriaIntroducido, String descripcionIntroducido) {		
 		Producto p1 = new Producto(Double.parseDouble(precioIntroducido),categoriaIntroducido,tituloIntroducido,descripcionIntroducido,usuario.getLoggedUser());		
 		productoRepo.save(p1);
 		model.addAttribute("id", usuario.getLoggedUser().getId());
@@ -59,16 +56,15 @@ public class ProductoController implements CommandLineRunner{
 	}
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
-		
 		Producto elegido = productoRepo.findById(num).get();
 		model.addAttribute("producto", elegido);
-
 		model.addAttribute("user",usuario.getLoggedUser());
 		model.addAttribute("userid", usuario.getLoggedUser().getId());
 		return "producto";
 	}
 	@GetMapping("/subirproducto")
 	public String subirProducto(Model model) {
+		System.out.println("usuario logueado: " + usuario.getLoggedUser().getId() + " " + usuario.getLoggedUser().getNombreInterno());
 		model.addAttribute("id",usuario.getLoggedUser().getId());//para tener la varibale id del usuario que ha inicio sesion en la vista de subir producto
 		return "subirproducto";
 	}
