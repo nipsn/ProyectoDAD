@@ -55,18 +55,13 @@ public class ProductoController implements CommandLineRunner {
 
 	@GetMapping("/producto/{num}")
 	public String verProducto(Model model, @PathVariable Long num) {
-		
+		Producto elegido = productoRepo.findById(num).get();
+		model.addAttribute("producto", elegido);
 		if(usuario.getLoggedUser() != null) {
-			Producto elegido = productoRepo.findById(num).get();
-			model.addAttribute("producto", elegido);
 			model.addAttribute("user", usuario.getLoggedUser());
 			model.addAttribute("userid", usuario.getLoggedUser().getId());
-			return "producto";
-		}
-		else {
-			return "SignUp";
-		}
-		
+		}		
+		return "producto";
 	}
 
 	@GetMapping("/subirproducto")
