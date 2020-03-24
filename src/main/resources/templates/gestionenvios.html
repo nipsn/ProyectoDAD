@@ -30,15 +30,16 @@
     		</form>
   		</div>
   		<ul class="nav justify-content-end">
-    		<button class="btn btn-success mr-1">Registrarse</button>
-    		<button class="btn btn-primary">Subir Producto</button>
+			<form method="post" action="/logout">
+				<input type="submit" value="Sign Out"  class="btn btn-danger"/>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
 		</ul>
 	</nav>
 	<nav class="nav justify-content-center">
   		<a class="nav-link" href="/usuario/{{userid}}">Tus Productos</a>
   		<a class="nav-link" href="/{{userid}}/chats">Chats</a>
   		<a class="nav-link" href="/subirproducto">Subir Producto</a>
-  		<a class="nav-link" href="/{{userid}}/gestionenvios">Envíos</a>
 	</nav>
 	
 	

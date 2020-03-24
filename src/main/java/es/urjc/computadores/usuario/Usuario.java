@@ -7,57 +7,54 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Component;
 
 import es.urjc.computadores.chat.Chat;
 import es.urjc.computadores.pedido.Pedido;
 import es.urjc.computadores.producto.Producto;
 
-
 @Entity
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-	@Size(min=2, max=20)
+
+	@Size(min = 2, max = 20)
 	@Column(unique = true)
 	private String nombreInterno;
-	
+
 	private String nombreReal;
 	private String clave;
-	
+
 	@Column(unique = true)
 	private String correo;
-	
-	@ElementCollection (fetch =FetchType.EAGER)
+
+	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
-	
-	@OneToMany(mappedBy = "propietario", cascade= CascadeType.ALL)
+
+	@OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL)
 	private List<Producto> productosEnVenta;
-	
+
 	@OneToMany(mappedBy = "remitente")
-	private List<Pedido> pedidosVendidos= new ArrayList<Pedido>();;
-	
+	private List<Pedido> pedidosVendidos = new ArrayList<Pedido>();;
+
 	@OneToMany(mappedBy = "destinatario")
-	private List<Pedido> pedidosComprados= new ArrayList<Pedido>();
-	
-	@OneToMany(mappedBy = "comprador",cascade= CascadeType.ALL)
-	private List<Chat> listaChatsComoComprador;//malos nombres. hay que cambiar
-	
-	@OneToMany(mappedBy = "vendedor",cascade= CascadeType.ALL)
+	private List<Pedido> pedidosComprados = new ArrayList<Pedido>();
+
+	@OneToMany(mappedBy = "comprador", cascade = CascadeType.ALL)
+	private List<Chat> listaChatsComoComprador;// malos nombres. hay que cambiar
+
+	@OneToMany(mappedBy = "vendedor", cascade = CascadeType.ALL)
 	private List<Chat> listaChatsComoVendedor;
-	
-	
-	
-	public Usuario() {}
-	
-	public Usuario(String nombreReal, String clave, String nombreInterno,String correo){
+
+	public Usuario() {
+	}
+
+	public Usuario(String nombreReal, String clave, String nombreInterno, String correo) {
 		this.nombreReal = nombreReal;
-		this.nombreInterno=nombreInterno;
+		this.nombreInterno = nombreInterno;
 		this.clave = clave;
-		this.correo=correo;
+		this.correo = correo;
 		productosEnVenta = new ArrayList<Producto>();
 		listaChatsComoComprador = new ArrayList<Chat>();
 		listaChatsComoVendedor = new ArrayList<Chat>();
@@ -66,11 +63,12 @@ public class Usuario {
 		roles = new ArrayList<String>();
 		roles.add("USER");
 	}
-	public Usuario(String nombreReal, String clave, String nombreInterno,String correo,boolean admin){
+
+	public Usuario(String nombreReal, String clave, String nombreInterno, String correo, boolean admin) {
 		this.nombreReal = nombreReal;
-		this.nombreInterno=nombreInterno;
-		this.clave =  new BCryptPasswordEncoder().encode(clave);
-		this.correo=correo;
+		this.nombreInterno = nombreInterno;
+		this.clave = new BCryptPasswordEncoder().encode(clave);
+		this.correo = correo;
 		productosEnVenta = new ArrayList<Producto>();
 		listaChatsComoComprador = new ArrayList<Chat>();
 		listaChatsComoVendedor = new ArrayList<Chat>();
@@ -78,13 +76,10 @@ public class Usuario {
 		pedidosComprados = new ArrayList<Pedido>();
 		roles = new ArrayList<String>();
 		roles.add("USER");
-		if(admin)
+		if (admin)
 			roles.add("ADMIN");
 	}
 
-	
-	
-	
 	public List<String> getRoles() {
 		return roles;
 	}
@@ -97,7 +92,6 @@ public class Usuario {
 		return nombreReal;
 	}
 
-	
 	public String getNombreInterno() {
 		return nombreInterno;
 	}
@@ -145,6 +139,7 @@ public class Usuario {
 	public List<Producto> getProductosEnVenta() {
 		return productosEnVenta;
 	}
+
 	public void setProductosVendidos(Pedido nuevo) {
 		this.pedidosVendidos.add(nuevo);
 	}
@@ -157,7 +152,4 @@ public class Usuario {
 		return pedidosComprados;
 	}
 
-	
-	
-	
 }

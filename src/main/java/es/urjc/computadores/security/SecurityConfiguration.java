@@ -22,9 +22,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/loginerror").permitAll();
 		http.authorizeRequests().antMatchers("/").permitAll();
 		http.authorizeRequests().antMatchers("/usuario/{id}").permitAll();
-		http.authorizeRequests().antMatchers("/producto{num}").permitAll();
+		http.authorizeRequests().antMatchers("/producto/{num}").permitAll();
 		http.authorizeRequests().antMatchers("/inputuser").permitAll();
-		http.authorizeRequests().antMatchers("/inputpedido").permitAll();
 		
 		
 		
@@ -39,7 +38,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/inputchat").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/{userid}/chats").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/chats/{id}").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/comprarproducto/inputpedido/{productid}").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers("/comprarproducto/inputpedido").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers("/inputpedido").hasAnyRole("USER");
 		
 		
 		

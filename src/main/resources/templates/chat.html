@@ -29,6 +29,7 @@
             <form action="inputmensaje" method="POST">
 					<input type='text' name='mensaje'/>mensaje
 					<input type='text' name='chatid'/>chatid
+					<input type="hidden" name="_csrf" value="{{token}}"/>
 					<input type='submit' value='Enviar'>
 			</form>
 			<a href="/{{userid}}/chats">Volver</a>

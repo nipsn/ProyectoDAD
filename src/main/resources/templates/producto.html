@@ -35,8 +35,16 @@
 			</form>
 		</div>
 		<ul class="nav justify-content-end">
+			{{^user}}
 			<a class="btn btn-success mr-1" href="registrar">Registrarse</a>
-			<a class="btn btn-primary">Subir Producto<a>
+			<a class="btn btn-primary" href="login">Iniciar Sesión</a>
+			{{/user}}
+			{{#user}}
+			<form method="post" action="/logout">
+				<input type="submit" value="Sign Out"  class="btn btn-danger"/>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
+			{{/user}}
 		</ul>
 	</nav>
 	<br>
@@ -53,7 +61,14 @@
 				<h5 class="card-title">{{titulo}}</h5>
 				<p class="card-text">{{descripcion}}</p>
 				<input type="hidden" name="_csrf" value="{{token}}"/>
-				
+				{{#user}}
+				<form method="POST" action="/inputchat">
+					<input type="submit" value="Contactar"  class="btn btn-primary"/>
+					<input type="hidden" name="idpropietario" value="{{propietario.id}}"/>
+					<input type="hidden" name="idlogin" value="{{userid}}"/>
+					<input type="hidden" name="_csrf" value="{{token}}"/>
+				</form>
+				{{/user}}
 				<a href="/comprarproducto/{{id}}" class="btn btn-primary">Hacer Pedido</a>
 			</div>
 			
