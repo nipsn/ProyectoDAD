@@ -61,7 +61,7 @@ public class Usuario {
 		pedidosVendidos = new ArrayList<Pedido>();
 		pedidosComprados = new ArrayList<Pedido>();
 		roles = new ArrayList<String>();
-		roles.add("USER");
+		getRoles().add("USER");
 	}
 
 	public Usuario(String nombreReal, String clave, String nombreInterno, String correo, boolean admin) {
@@ -75,9 +75,9 @@ public class Usuario {
 		pedidosVendidos = new ArrayList<Pedido>();
 		pedidosComprados = new ArrayList<Pedido>();
 		roles = new ArrayList<String>();
-		roles.add("USER");
+		getRoles().add("USER");
 		if (admin)
-			roles.add("ADMIN");
+			getRoles().add("ADMIN");
 	}
 
 	public List<String> getRoles() {

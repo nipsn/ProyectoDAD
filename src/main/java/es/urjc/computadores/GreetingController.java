@@ -3,6 +3,7 @@ package es.urjc.computadores;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -33,13 +34,16 @@ public class GreetingController implements CommandLineRunner {
 	}
 
 	@GetMapping("/")
-	public String greeting(Model model) {
+	public String greeting(Model model, HttpServletRequest request) {
 		List<Producto> lista = productoRepo.findAll();
 		model.addAttribute("productos", lista);
-
+		
 		if (usuario.getLoggedUser() != null) {
 			model.addAttribute("user", usuario.getLoggedUser());
 			model.addAttribute("nombreUser", usuario.getLoggedUser().getNombreReal());
+			if(request.isUserInRole("ADMIN")) {
+				model.addAttribute("admin",usuario.getLoggedUser());
+			}
 		}
 		return "main";
 	}
