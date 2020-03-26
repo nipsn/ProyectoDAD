@@ -74,6 +74,9 @@ public class Pedido {
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
+	public Usuario getRemitente() {
+		return this.remitente;
+	}
 	
 	
 	
