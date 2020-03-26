@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.urjc.computadores.chat.Chat;
 import es.urjc.computadores.mensaje.Mensaje;
+import es.urjc.computadores.producto.Producto;
+import es.urjc.computadores.producto.ProductoRepository;
 import es.urjc.computadores.usuario.UserComponent;
 import es.urjc.computadores.usuario.Usuario;
 import es.urjc.computadores.usuario.UsuarioRepository;
@@ -28,6 +31,8 @@ public class ChatController implements CommandLineRunner {
 	private ChatRepository chatRepo;
 	@Autowired
 	private UsuarioRepository usuarioRepo;
+	@Autowired
+	private ProductoRepository productoRepo;
 	@Autowired
 	private UserComponent usuario;
 
@@ -42,15 +47,23 @@ public class ChatController implements CommandLineRunner {
 	}
 
 	@PostMapping("/inputchat")
-	public String insertarChat(Model model, @RequestParam String idpropietario, String idlogin) {
-		Usuario u1 = usuarioRepo.findById(Long.parseLong(idpropietario)).get();
-		Usuario u2 = usuarioRepo.findById(Long.parseLong(idlogin)).get();
-		Chat chat = new Chat(u1, u2);
+	public String insertarChat(Model model, @RequestParam String idpropietario, String idlogin, String idproducto) {
+		Usuario propietario = usuarioRepo.findById(Long.parseLong(idpropietario)).get();
+		Usuario comprador = usuarioRepo.findById(Long.parseLong(idlogin)).get();
+		Producto p= productoRepo.findById(Long.parseLong(idproducto)).get();
+		Chat chat = new Chat(propietario, comprador, p);
 		chatRepo.save(chat);
 
 		model.addAttribute("user", usuario.getLoggedUser());
 		model.addAttribute("nombreUser", usuario.getLoggedUser().getNombreReal());
-		return "main";
+		
+		List<Chat> listaChat = chatRepo.findByComprador(comprador);
+		listaChat.addAll(chatRepo.findByVendedor(comprador));
+		model.addAttribute("datos", listaChat);
+		model.addAttribute("userid", Long.parseLong(idlogin));
+		model.addAttribute("producto",p);
+
+		return "listachats";
 	}
 
 	@GetMapping("/{userid}/chats")
@@ -71,6 +84,7 @@ public class ChatController implements CommandLineRunner {
 
 		model.addAttribute("mensajes", mensajes);
 		model.addAttribute("userid", elegido.getVendedor().getId());
+		model.addAttribute("chatid",id);
 
 		return "chat";
 	}

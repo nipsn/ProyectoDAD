@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import es.urjc.computadores.mensaje.Mensaje;
+import es.urjc.computadores.producto.Producto;
 import es.urjc.computadores.usuario.Usuario;
 
 
@@ -15,6 +16,7 @@ public class Chat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
 	
 	@ManyToOne
 	private Usuario comprador;
@@ -25,11 +27,15 @@ public class Chat {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Mensaje> mensajes;
 	
+	@OneToOne
+	private Producto producto;
+	
 	protected Chat() {}
 	
-	public Chat(Usuario comprador, Usuario vendedor) {
+	public Chat(Usuario comprador, Usuario vendedor,Producto producto) {
 		this.comprador = comprador;
 		this.vendedor = vendedor;
+		this.producto=producto;
 		mensajes = new ArrayList<Mensaje>();
 	}
 

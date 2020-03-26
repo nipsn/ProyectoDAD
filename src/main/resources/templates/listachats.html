@@ -45,8 +45,11 @@
     <tbody>
     {{#datos}}
       <tr>
-        <td>{{id}}</td>
+        <td>{{producto.titulo}}</td>
+        	<input type="hidden" name="_csrf" value="{{token}}"/>
+        		<input type="hidden" name="chatid" value="{{id}}"/>
         <td><a href="/chats/{{id}}">Entrar</a></td>
+        
       </tr>
      {{/datos}}
     </tbody>

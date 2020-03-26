@@ -34,12 +34,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/{id}/gestionenvios").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/subirproducto").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/comprarproducto/{num}").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/chats/inputmensaje").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers("/chats/{chatid}/inputmensaje").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/inputchat").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/{userid}/chats").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/chats/{id}").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/comprarproducto/inputpedido").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/inputpedido").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers("/chats/inputmensaje").hasAnyRole("USER");
 		
 		
 		
