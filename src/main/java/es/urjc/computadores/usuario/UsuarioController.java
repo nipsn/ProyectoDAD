@@ -55,6 +55,14 @@ public class UsuarioController implements CommandLineRunner {
 	@GetMapping("/listausuarios")
 	public String listarUsuarios(Model model) {
 		List<Usuario> lista = usuarioRepo.findAll();
+		int index = 0;
+		for(Usuario u : lista){
+			if(u.getNombreInterno().equals("admin")) {
+				break;
+			}
+			index++;
+		}
+		lista.remove(index);
 		model.addAttribute("datos", lista);
 		return "usuarios";
 	}
@@ -71,5 +79,23 @@ public class UsuarioController implements CommandLineRunner {
 	@GetMapping("/loginerror")
 	public String SignInError(Model model) {
 		return "SignIn";
+	}
+	
+	@GetMapping("/deleteUsuario/{userid}")
+	public String DeleteUsuario(Model model, @PathVariable Long userid) {
+		usuarioRepo.delete(usuarioRepo.findById(userid).get());
+		
+		List<Usuario> lista = usuarioRepo.findAll();
+		int index = 0;
+		for(Usuario u : lista){
+			if(u.getNombreInterno().equals("admin")) {
+				break;
+			}
+			index++;
+		}
+		lista.remove(index);
+		model.addAttribute("datos",lista);
+		
+		return "usuarios";
 	}
 }

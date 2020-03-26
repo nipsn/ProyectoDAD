@@ -70,6 +70,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	// User
 		auth.authenticationProvider(authenticationProvider);
-	
 	}
 }
