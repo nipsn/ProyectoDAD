@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -96,6 +97,17 @@ public class ProductoController implements CommandLineRunner {
 
 		return "pedidorealizado";
 	}
+	@GetMapping("/eliminarproducto/{productoid}")
+	public String borrarProducto(Model model, @PathVariable long productoid, HttpServletRequest request) {
+		Producto p = productoRepo.findById(productoid).get();
+		Pedido pedidoEncontrado = pedidoRepo.findByProducto(p);
+		if(pedidoEncontrado == null) {
+		productoRepo.deleteById(productoid);
+		model.addAttribute("productoBorrado", p);
+		}
+		return "productdelete";
+	}
+	
 	
 	private void comunicarSenderEmails(int pedidoId) {
 		Socket serverSocket = null;

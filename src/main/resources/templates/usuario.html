@@ -61,8 +61,10 @@
         <td>{{categoria}}</td>
         <td>{{usuario.nombreReal}}</td>
         <td><a href="/producto/{{id}}">Detalles</a></td>
-        <td><a href="">Delete</a></td>
+        {{#espropietario}}
         <td><a href="">Editar</a></td>
+        <td><a href="/eliminarproducto/{{id}}">Delete</a></td>
+        {{/espropietario}}
       </tr>
      {{/productos}}
     </tbody>

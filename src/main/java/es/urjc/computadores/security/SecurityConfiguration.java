@@ -41,7 +41,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/comprarproducto/inputpedido").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/inputpedido").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/chats/inputmensaje").hasAnyRole("USER");
-		
+		http.authorizeRequests().antMatchers("/eliminarproducto/{productoid}").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers("/generarfactura").hasAnyRole("USER");
+		http.authorizeRequests().antMatchers("/factura**.pdf").hasAnyRole("USER");
 		
 		
 		

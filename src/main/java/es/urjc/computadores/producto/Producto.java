@@ -19,7 +19,7 @@ public class Producto {
 	@ManyToOne
 	private Usuario propietario;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Pedido pedido;
 
 	public Producto() {}

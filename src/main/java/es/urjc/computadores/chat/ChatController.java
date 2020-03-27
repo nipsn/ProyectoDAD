@@ -49,18 +49,26 @@ public class ChatController implements CommandLineRunner {
 	public String insertarChat(Model model, @RequestParam String idpropietario, String idlogin, String idproducto) {
 		Usuario propietario = usuarioRepo.findById(Long.parseLong(idpropietario)).get();
 		Usuario comprador = usuarioRepo.findById(Long.parseLong(idlogin)).get();
-		Producto p= productoRepo.findById(Long.parseLong(idproducto)).get();
-		Chat chat = new Chat(propietario, comprador, p);
-		chatRepo.save(chat);
+		List<Chat> chatsUsuario = chatRepo.findByComprador(comprador);
+		Producto p = productoRepo.findById(Long.parseLong(idproducto)).get();
+		boolean existe = false;
+		for (Chat c : chatsUsuario) {
+			existe =c.getProduct().getId() == (Long.parseLong(idproducto));
+			if(existe) break;
+		}
+		if (!existe) {
+			Chat chat = new Chat(propietario, comprador, p);
+			chatRepo.save(chat);
+		}
 
 		model.addAttribute("user", usuario.getLoggedUser());
 		model.addAttribute("nombreUser", usuario.getLoggedUser().getNombreReal());
-		
+
 		List<Chat> listaChat = chatRepo.findByComprador(comprador);
 		listaChat.addAll(chatRepo.findByVendedor(comprador));
 		model.addAttribute("datos", listaChat);
 		model.addAttribute("userid", Long.parseLong(idlogin));
-		model.addAttribute("producto",p);
+		model.addAttribute("producto", p);
 
 		return "listachats";
 	}

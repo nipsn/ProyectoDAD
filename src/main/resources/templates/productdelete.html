@@ -33,48 +33,56 @@
 					placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 			</form>
-		</div>
-		<ul class="nav justify-content-end">
-			{{^user}}
-			<a class="btn btn-success mr-1" href="/registrar">Registrarse</a>
-			<a class="btn btn-primary" href="/login">Iniciar Sesión</a>
-			{{/user}}
-			{{#user}}
+		</div><ul class="nav justify-content-end">
 			<form method="post" action="/logout">
 				<input type="submit" value="Sign Out"  class="btn btn-danger"/>
 				<input type="hidden" name="_csrf" value="{{token}}"/>
 			</form>
-			{{/user}}
 		</ul>
 	</nav>
 	<br>
+	{{#productoBorrado}}
 	<div class="container">
-		{{#producto}}
 		<div class="card text-center">
 			<div class="card-header">
 				<p>
-					<a href="/usuario/{{propietario.id}}">Propietario</a>
-					<div class="card-footer text-muted">{{categoria}}</div>
+					
+					<h2>Has eliminado: {{productoBorrado.titulo}}, de tu lista de productos en venta</h2>
 				</p>
 			</div>
 			<div class="card-body">
-				<h5 class="card-title">{{titulo}}</h5>
-				<p class="card-text">{{descripcion}}</p>
-				<input type="hidden" name="_csrf" value="{{token}}"/>
-				{{#user}}
-				<form method="POST" action="/inputchat">
-					<input type="submit" value="Contactar"  class="btn btn-primary"/>
-					<input type="hidden" name="idpropietario" value="{{propietario.id}}"/>
-					<input type="hidden" name="idproducto" value="{{id}}"/>
-					{{#userid}}<input type="hidden" name="idlogin" value="{{userid}}"/>{{/userid}}
-					<input type="hidden" name="_csrf" value="{{token}}"/>
-				</form>
-				{{/user}}
-				<a href="/comprarproducto/{{id}}" class="btn btn-primary">Hacer Pedido</a>
+				
+				
+				<a class="btn btn-success mr-1" href="/">Aceptar</a>
+				
 			</div>
 			
 		</div>
 	</div>
-	{{/producto}}
+	{{/productoBorrado}}
+	
+	{{^productoBorrado}}
+				<div class="container">
+		<div class="card text-center">
+			<div class="card-header">
+				<p>
+					
+					<h2>El producto que has elegido no se puede borrar, porque esta en un pedido</h2>
+				</p>
+			</div>
+			<div class="card-body">
+				
+				
+				<a class="btn btn-success mr-1" href="/">Aceptar</a>
+				
+			</div>
+			
+		</div>
+	</div>	
+	{{/productoBorrado}}
+	
 </body>
 </html>
+
+
+

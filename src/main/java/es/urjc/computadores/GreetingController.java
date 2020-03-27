@@ -52,19 +52,22 @@ public class GreetingController implements CommandLineRunner {
 		}
 		
 		if (usuario.getLoggedUser() != null) {
-			ArrayList<Integer> aux= new ArrayList<Integer>();
+			/*ArrayList<Integer> aux= new ArrayList<Integer>();
 			int indice=0;
 			for(Producto p: lista) {
 				if(p.getPropietario().getNombreReal().equals(usuario.getLoggedUser().getNombreReal())) {
-					aux.add(indice);
-					System.out.print(indice);
+					aux.add(indice-1);
 				}
 				indice++;
 			}
-			System.out.println(aux);
 			for(int a: aux) {
 				lista.remove(a);
+			
 			}
+		*/
+			List<Producto> productosUser = productoRepo.findByPropietario(usuario.getLoggedUser());
+			lista.removeAll(productosUser);
+			
 			model.addAttribute("user", usuario.getLoggedUser());
 			model.addAttribute("nombreUser", usuario.getLoggedUser().getNombreReal());
 			if(request.isUserInRole("ADMIN")) {

@@ -58,6 +58,9 @@ public class Chat {
 	public Usuario getVendedor() {
 		return vendedor;
 	}
+	public Producto getProduct() {
+		return producto;
+	}
 	
 	
 	

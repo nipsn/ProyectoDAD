@@ -3,6 +3,7 @@ package es.urjc.computadores.usuario;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -68,17 +70,23 @@ public class UsuarioController implements CommandLineRunner {
 	}
 
 	@GetMapping("/usuario/{userid}")
-	public String verDatosUsuario(Model model, @PathVariable Long userid) {
+	public String verDatosUsuario(Model model, @PathVariable Long userid, HttpServletRequest request) {
 		Usuario elegido = usuarioRepo.findById(userid).get();
 		model.addAttribute("usuario", elegido);
 		model.addAttribute("productos", elegido.getProductosEnVenta());
 		model.addAttribute("user", usuariologueado);
+		//comprobacion 
+		if((usuariologueado.getLoggedUser() != null && usuariologueado.getLoggedUser().getId()==userid) || (request.isUserInRole("ADMIN"))) {
+			model.addAttribute("espropietario", usuariologueado);
+		}
+		
+		
 		return "usuario";
 	}
 
-	@GetMapping("/loginerror")
+	@RequestMapping(value= "/loginerror", method = RequestMethod.POST)
 	public String SignInError(Model model) {
-		return "SignIn";
+		return "loginerror";
 	}
 	
 	@GetMapping("/deleteUsuario/{userid}")
