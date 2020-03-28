@@ -33,20 +33,15 @@
 	<main>
 		<div class="container">
 			<h2>
-				Chat
+				Chat sobre: {{titulo}}
 			</h2>
-			  {{#datos}}
-					Sobre: {{producto.titulo}}
-     			{{/datos}}
+			
 				
 			{{#mensajes}}
 			<div>
             	<tr>
             		<td>	
             			{{-index}}
-            		</td>
-            		<td>
-            			{{fecha}}
             		</td>
             		<td>
             			{{cuerpo}}

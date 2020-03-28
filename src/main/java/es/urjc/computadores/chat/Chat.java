@@ -30,12 +30,15 @@ public class Chat {
 	@OneToOne
 	private Producto producto;
 	
+	private String titulo;
+	
 	protected Chat() {}
 	
 	public Chat(Usuario comprador, Usuario vendedor,Producto producto) {
 		this.comprador = comprador;
 		this.vendedor = vendedor;
 		this.producto=producto;
+		this.titulo=producto.getTitulo();
 		mensajes = new ArrayList<Mensaje>();
 	}
 
@@ -60,6 +63,14 @@ public class Chat {
 	}
 	public Producto getProduct() {
 		return producto;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public String getTitulo() {
+		return titulo;
 	}
 	
 	

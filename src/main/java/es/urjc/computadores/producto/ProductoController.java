@@ -60,7 +60,6 @@ public class ProductoController implements CommandLineRunner {
 		model.addAttribute("producto", elegido);
 		if(usuario.getLoggedUser() != null) {
 			model.addAttribute("user", usuario.getLoggedUser());
-			model.addAttribute("userid", usuario.getLoggedUser().getId());
 		}		
 		return "producto";
 	}
@@ -98,12 +97,12 @@ public class ProductoController implements CommandLineRunner {
 		return "pedidorealizado";
 	}
 	@GetMapping("/eliminarproducto/{productoid}")
-	public String borrarProducto(Model model, @PathVariable long productoid, HttpServletRequest request) {
+	public String borrarProducto(Model model, @PathVariable Long productoid, HttpServletRequest request) {
 		Producto p = productoRepo.findById(productoid).get();
 		Pedido pedidoEncontrado = pedidoRepo.findByProducto(p);
 		if(pedidoEncontrado == null) {
-		productoRepo.deleteById(productoid);
-		model.addAttribute("productoBorrado", p);
+			productoRepo.deleteById(productoid);
+			model.addAttribute("productoBorrado", p);
 		}
 		return "productdelete";
 	}

@@ -46,18 +46,20 @@ public class ChatController implements CommandLineRunner {
 	}
 
 	@PostMapping("/inputchat")
-	public String insertarChat(Model model, @RequestParam String idpropietario, String idlogin, String idproducto) {
+	public String insertarChat(Model model, @RequestParam String idpropietario, String idproducto) {
 		Usuario propietario = usuarioRepo.findById(Long.parseLong(idpropietario)).get();
-		Usuario comprador = usuarioRepo.findById(Long.parseLong(idlogin)).get();
+		Usuario comprador = usuarioRepo.findById(usuario.getLoggedUser().getId()).get();
 		List<Chat> chatsUsuario = chatRepo.findByComprador(comprador);
+
+		System.out.println(chatsUsuario);
 		Producto p = productoRepo.findById(Long.parseLong(idproducto)).get();
 		boolean existe = false;
 		for (Chat c : chatsUsuario) {
-			existe =c.getProduct().getId() == (Long.parseLong(idproducto));
+			existe = c.getTitulo().equals(p.getTitulo()) && (c.getComprador().getId() == usuario.getLoggedUser().getId()) && (c.getVendedor().getId() == p.getPropietario().getId());
 			if(existe) break;
 		}
 		if (!existe) {
-			Chat chat = new Chat(propietario, comprador, p);
+			Chat chat = new Chat(comprador, propietario, p);
 			chatRepo.save(chat);
 		}
 
@@ -67,7 +69,7 @@ public class ChatController implements CommandLineRunner {
 		List<Chat> listaChat = chatRepo.findByComprador(comprador);
 		listaChat.addAll(chatRepo.findByVendedor(comprador));
 		model.addAttribute("datos", listaChat);
-		model.addAttribute("userid", Long.parseLong(idlogin));
+		model.addAttribute("userid", usuario.getLoggedUser().getId());
 		model.addAttribute("producto", p);
 
 		return "listachats";
@@ -92,6 +94,7 @@ public class ChatController implements CommandLineRunner {
 		model.addAttribute("mensajes", mensajes);
 		model.addAttribute("userid", elegido.getVendedor().getId());
 		model.addAttribute("chatid",id);
+		model.addAttribute("titulo", elegido.getTitulo());
 
 		return "chat";
 	}

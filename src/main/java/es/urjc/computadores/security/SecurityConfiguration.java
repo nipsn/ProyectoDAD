@@ -43,12 +43,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/chats/inputmensaje").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/eliminarproducto/{productoid}").hasAnyRole("USER");
 		http.authorizeRequests().antMatchers("/generarfactura").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/factura**.pdf").hasAnyRole("USER");
 		
 		
-		
-		//http.authorizeRequests().anyRequest().permitAll();
-		//http.authorizeRequests().anyRequest().authenticated();
+		http.authorizeRequests().anyRequest().authenticated();
 		
 		
 		//login form
@@ -63,8 +60,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.logout().logoutUrl("/logout");
 		http.logout().logoutSuccessUrl("/");
 		
-		// Disable CSRF at the moment
-		//http.csrf().disable();
 		
 	}
 	
