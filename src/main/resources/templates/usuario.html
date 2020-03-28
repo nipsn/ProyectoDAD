@@ -62,7 +62,12 @@
         <td>{{usuario.nombreReal}}</td>
         <td><a href="/producto/{{id}}">Detalles</a></td>
         {{#espropietario}}
-        <td><a href="">Editar</a></td>
+        <td>
+        	<form action="/modificarproducto">
+        		<input type="hidden" name="productid" value="{{id}}"/>
+        		<input type="submit" value="Editar"  class="btn btn-primary"/>
+        	</form>	
+        </td>
         <td><a href="/eliminarproducto/{{id}}">Delete</a></td>
         {{/espropietario}}
       </tr>

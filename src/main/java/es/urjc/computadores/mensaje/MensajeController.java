@@ -36,6 +36,8 @@ public class MensajeController implements CommandLineRunner {
 		chatRepo.save(elegido);
 		model.addAttribute("mensajes", elegido.getMensajes());
 		model.addAttribute("userid", elegido.getVendedor().getId());
+		model.addAttribute("chatid",elegido.getId());
+		model.addAttribute("titulo", elegido.getTitulo());
 		
 		return "chat";
 	}

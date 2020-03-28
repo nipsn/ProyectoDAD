@@ -46,12 +46,23 @@ public class ProductoController implements CommandLineRunner {
 
 	@PostMapping("/inputproducto")
 	public String insertarProducto(Model model, @RequestParam String precioIntroducido, String tituloIntroducido,
-			String categoriaIntroducido, String descripcionIntroducido) {
-		Producto p1 = new Producto(Double.parseDouble(precioIntroducido), categoriaIntroducido, tituloIntroducido,
-				descripcionIntroducido, usuario.getLoggedUser());
-		productoRepo.save(p1);
+			String categoriaIntroducido, String descripcionIntroducido, Long id) {
+		if(id==null) {
+			Producto p1 = new Producto(Double.parseDouble(precioIntroducido), categoriaIntroducido, tituloIntroducido,
+					descripcionIntroducido, usuario.getLoggedUser());
+			productoRepo.save(p1);
+			
+		} else {
+			Producto p = productoRepo.findById(id).get();
+			p.setCategoria(categoriaIntroducido);
+			p.setDescripcion(descripcionIntroducido);
+			p.setPrecio(Double.parseDouble(precioIntroducido));
+			p.setTitulo(tituloIntroducido);
+			productoRepo.save(p);
+		}
 		model.addAttribute("id", usuario.getLoggedUser().getId());
 		return "subirproducto";
+		
 	}
 
 	@GetMapping("/producto/{num}")
@@ -66,13 +77,22 @@ public class ProductoController implements CommandLineRunner {
 
 	@GetMapping("/subirproducto")
 	public String subirProducto(Model model) {
-		System.out.println("usuario logueado: " + usuario.getLoggedUser().getId() + " "
-				+ usuario.getLoggedUser().getNombreInterno());
-		model.addAttribute("id", usuario.getLoggedUser().getId());// para tener la varibale id del usuario que ha inicio
-																	// sesion en la vista de subir producto
+		model.addAttribute("id", usuario.getLoggedUser().getId());
 		return "subirproducto";
 	}
-
+	
+	@GetMapping("/modificarproducto")
+	public String modificarProducto(Model model, @RequestParam Long productid) {
+		Producto prod = productoRepo.findById(productid).get();
+		model.addAttribute("categoria", prod.getCategoria());
+		model.addAttribute("titulo", prod.getTitulo());
+		model.addAttribute("descripcion", prod.getDescripcion());
+		model.addAttribute("precio", prod.getPrecio());
+		model.addAttribute("productid", prod.getId());
+		model.addAttribute("id", usuario.getLoggedUser().getId());
+		return "subirproducto";
+	}
+	
 	@RequestMapping("/comprarproducto/{num}")
 	public String comprarProducto(Model model, @PathVariable Long num) {
 
