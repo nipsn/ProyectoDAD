@@ -15,11 +15,11 @@ Parte pública: darte de alta, login, ver productos.
 # Servicios internos 
 **Generar una factura en PDF**
 
-<kbd>(Interfaz/InvoiceGeneratorInterface.png)</kbd>
+<kbd>![enter image description here](Interfaz/InvoiceGeneratorInterface.png)</kbd>
 
 **Envío de correos como notificacion**
 
-<kbd>(Interfaz/EmailSenderInterface.png)</kbd>
+<kbd>![enter image description here](Interfaz/EmailSenderInterface.png)</kbd>
 
  ## Pantallas de la aplicación
 Se especifican los wireframes de las principales pantallas de Gym Tool
