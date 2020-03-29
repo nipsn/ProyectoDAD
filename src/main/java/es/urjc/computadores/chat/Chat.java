@@ -27,7 +27,7 @@ public class Chat {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Mensaje> mensajes;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Producto producto;
 	
 	private String titulo;

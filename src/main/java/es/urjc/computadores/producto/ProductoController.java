@@ -3,6 +3,7 @@ package es.urjc.computadores.producto;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.urjc.computadores.chat.Chat;
+import es.urjc.computadores.chat.ChatRepository;
 import es.urjc.computadores.pedido.Pedido;
 import es.urjc.computadores.pedido.PedidoRepository;
 import es.urjc.computadores.usuario.UserComponent;
@@ -31,6 +34,9 @@ public class ProductoController implements CommandLineRunner {
 	@Autowired
 	private PedidoRepository pedidoRepo;
 
+	@Autowired
+	private ChatRepository chatRepo;
+	
 	@Autowired
 	private UserComponent usuario;
 
@@ -119,6 +125,8 @@ public class ProductoController implements CommandLineRunner {
 	@GetMapping("/eliminarproducto/{productoid}")
 	public String borrarProducto(Model model, @PathVariable Long productoid, HttpServletRequest request) {
 		Producto p = productoRepo.findById(productoid).get();
+		List<Chat> listaChatsABorrar = chatRepo.findByProducto(p);
+		chatRepo.deleteInBatch(listaChatsABorrar);
 		Pedido pedidoEncontrado = pedidoRepo.findByProducto(p);
 		if(pedidoEncontrado == null) {
 			productoRepo.deleteById(productoid);

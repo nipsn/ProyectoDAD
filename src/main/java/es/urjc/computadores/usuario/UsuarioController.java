@@ -74,7 +74,7 @@ public class UsuarioController implements CommandLineRunner {
 		Usuario elegido = usuarioRepo.findById(userid).get();
 		model.addAttribute("usuario", elegido);
 		model.addAttribute("productos", elegido.getProductosEnVenta());
-		model.addAttribute("user", usuariologueado);
+		model.addAttribute("user", usuariologueado.getLoggedUser());
 		//comprobacion 
 		if((usuariologueado.getLoggedUser() != null && usuariologueado.getLoggedUser().getId()==userid) || (request.isUserInRole("ADMIN"))) {
 			model.addAttribute("espropietario", usuariologueado);
