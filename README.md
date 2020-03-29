@@ -13,9 +13,13 @@ Parte pública: darte de alta, login, ver productos.
 
 
 # Servicios internos 
-- Generar una factura en PDF
-- Generar el historial de los envíos en PDF
-- Envío de correos como notificacion.
+**Generar una factura en PDF**
+
+<kbd>(Interfaz/InvoiceGeneratorInterface.png)</kbd>
+
+**Envío de correos como notificacion**
+
+<kbd>(Interfaz/EmailSenderInterface.png)</kbd>
 
  ## Pantallas de la aplicación
 Se especifican los wireframes de las principales pantallas de Gym Tool
@@ -32,10 +36,6 @@ Diagrama de flujo resultante para la primera fase del desarrollo
 **Pantalla Inicial**
 
 <kbd>![enter image description here](Pantallasfinales/vistalistadoproductos.png)</kbd>
-
-**Concepto Pantalla Inicial**
-
-<kbd>![enter image description here](Pantallasfinales/vistaprincipal.png)</kbd>
 
 **Pantalla de Producto**
 
