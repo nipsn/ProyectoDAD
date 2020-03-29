@@ -37,8 +37,8 @@ public class PedidoController implements CommandLineRunner {
 
 	}
 
-	@GetMapping("/{id}/gestionenvios")
-	public String gestionenvios(Model model, @PathVariable Long id) {
+	@GetMapping("/gestionenvios")
+	public String gestionenvios(Model model) {
 		model.addAttribute("vendidos", usuario.getLoggedUser().getPedidosVendidos());
 		model.addAttribute("comprados", usuario.getLoggedUser().getPedidosComprados());
 		model.addAttribute("userid", usuario.getLoggedUser().getId());
@@ -65,7 +65,7 @@ public class PedidoController implements CommandLineRunner {
 			dos.writeInt(pedidoId);
 
 			InputStream is = serverSocket.getInputStream();
-			OutputStream os = new FileOutputStream(OUTPUT_DIR + "factura" + pedidoId + ".pdf");
+			OutputStream os = new FileOutputStream(System.getProperty("user.home") + "/facturas/facturasgeneradas/factura" + pedidoId + ".pdf");
 
 			copy(is, os);
 
