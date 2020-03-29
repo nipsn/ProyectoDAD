@@ -31,7 +31,7 @@ Diagrama de flujo resultante para la primera fase del desarrollo
 
 **Pantalla Inicial**
 
-<kbd>![enter image description here](Pantallas/Main.png)</kbd>
+<kbd>![enter image description here](Pantallasfinales/vistalistadoproductos.png)</kbd>
 
 **Concepto Pantalla Inicial**
 
@@ -72,10 +72,6 @@ Diagrama de flujo resultante para la primera fase del desarrollo
 **Pantalla de Subir un Producto**
 
 <kbd>![enter image description here](Pantallasfinales/vistasubirproducto.png)</kbd>
-
-**Pantalla de lista Productos**
-
-<kbd>![enter image description here](Pantallasfinales/vistalistadoproductos.png)</kbd>
 
 
 # Integrantes del grupo
