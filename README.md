@@ -37,79 +37,43 @@ Diagrama de flujo resultante para la primera fase del desarrollo
 
 <kbd>![enter image description here](Pantallasfinales/vistaprincipal.png)</kbd>
 
-**Pantalla de Búsqueda de Producto**
-
-<kbd>![enter image description here](Pantallas/Search.png)</kbd>
-
 **Pantalla de Producto**
-
-<kbd>![enter image description here](Pantallas/Product.png)</kbd>
-
-**Concepto Pantalla de Producto**
 
 <kbd>![enter image description here](Pantallasfinales/vistaproducto.png)</kbd>
 
 **Pantalla de Perfil del Usuario**
 
-<kbd>![enter image description here](Pantallas/Profile.png)</kbd>
-
-**Concepto Pantalla de Perfil del Usuario**
-
 <kbd>![enter image description here](Pantallasfinales/vistausuario.png)</kbd>
 
 **Pantalla de Registrarse**
 
-<kbd>![enter image description here](Pantallas/SingUp.png)</kbd>
-
-**Concepto Pantalla de Registrarse**
-
 <kbd>![enter image description here](Pantallasfinales/vistaregistro.png)</kbd>
 
-**Concepto Pantalla de lista de usuarios**
+**Lista de usuarios**
 
 <kbd>![enter image description here](Pantallasfinales/vistalistadousuarios.png)</kbd>
 
 **Pantalla de Iniciar Sesión**
 
-<kbd>![enter image description here](Pantallas/SingIn.png)</kbd>
-
-**Concepto Pantalla de Iniciar Sesió**
-
 <kbd>![enter image description here](Pantallasfinales/vistalogin.png)</kbd>
 
 **Pantalla de Chat sobre Producto**
 
-<kbd>![enter image description here](Pantallas/Chats.png)</kbd>
-
-**Concepto Pantalla de Chat sobre Producto**
-
 <kbd>![enter image description here](Pantallasfinales/vistachat.png)</kbd>
 
-**Concepto Pantalla de lista de chats**
+**Pantalla de Lista de chats**
 
 <kbd>![enter image description here](Pantallasfinales/vistalistadochats.png)</kbd>
 
-**Pantalla de Productos Favoritos**
-
-<kbd>![enter image description here](Pantallas/Favorites.png)</kbd>
-
 **Pantalla de Gestión de Productos del Usuario**
-
-<kbd>![enter image description here](Pantallas/Products.png)</kbd>
-
-**Concepto Pantalla de Gestión de Productos del Usuario**
 
 <kbd>![enter image description here](Pantallasfinales/vistapedidosdeusuario.png)</kbd>
 
 **Pantalla de Subir un Producto**
 
-<kbd>![enter image description here](Pantallas/UploadProduct.png)</kbd>
-
-**Concepto de Pantalla Subir un Producto**
-
 <kbd>![enter image description here](Pantallasfinales/vistasubirproducto.png)</kbd>
 
-**Concepto Pantalla de lista Productos**
+**Pantalla de lista Productos**
 
 <kbd>![enter image description here](Pantallasfinales/vistalistadoproductos.png)</kbd>
 
