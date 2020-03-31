@@ -5,6 +5,35 @@ Parte privada: gestión de tus productos, comunicarte con otros usuarios y compr
 
 Parte pública: darte de alta, login, ver productos.
 
+# Despliegue
+Se ha hecho el despliegue en Ubuntu Server 18.04, y para ello se han seguido los siguientes pasos:
+### 1: Instalación de los paquetes necesarios
+Se debe instalar tanto MySQL como java. Para ello se puede hacer todo con un solo comando:
+
+`sudo apt install mysql-server openjdk-8-jre-headless openjdk-8-jdk git`
+
+### 2: Inicialización y creación de la base de datos:
+Se debe inicializar el servicio de `mysql` y crear la base de datos en si, además de crear un usuario y darle permisos sobre ella.
+Iniciamos el servicio con: 
+
+`sudo systemctl enable mysql`
+`sudo systemctl start mysql`
+
+Se crean la base de datos y el usuario siguiendo la documentación oficial:
+
+https://spring.io/guides/gs/accessing-data-mysql/
+
+Para que funcione correctamente el nombre de la base de datos debe ser `db_marketplace_sec`, el usuario debe ser `admin@localhost` y su contraseña `rooturjc`.
+
+### 3: Ejecución
+Para ello nos descargamos el proyecto con:
+
+`git clone https://github.com/nipsn/ProyectoDAD`
+
+En la carpeta `executables` hay 3 archivos `.jar` que se deberán ejecutar cada uno en una `tty`. En nuestro caso, la aplicación principal (`demo-0.0.1-SNAPSHOT.jar`) en la `tty0`, el servicio interno encargado de la creación de facturas (`pdfgen.jar`) en la `tty1` y el servicio interno que gestiona los correos electrónicos (`sender-emails-source.jar`) en la `tty2`.
+
+Para ejecutar cada uno de ellos se usa el comando `java -jar ejecutable.jar`, donde `ejecutable.jar` corresponde a cada uno de los ejecutables.
+
 # Modelo Entidad-Relación
 ![alt text](modeloER.jpeg)
 
