@@ -15,20 +15,20 @@ public class Producto {
 	private double precio;
 	private String categoria;
 	private String descripcion;
-	private String nombre;
+	private String titulo;
 	@ManyToOne
 	private Usuario propietario;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Pedido pedido;
 
 	public Producto() {}
 	
-	public Producto(double precio,String categoria, String descripcion, String nombre ,Usuario propietario) {
+	public Producto(double precio,String categoria,String titulo, String descripcion, Usuario propietario) {
 		this.precio=precio;
 		this.categoria=categoria;
+		this.titulo=titulo;
 		this.descripcion=descripcion;
-		this.nombre=nombre;
 		this.propietario=propietario;
 	}
 
@@ -63,12 +63,12 @@ public class Producto {
 		return propietario;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	

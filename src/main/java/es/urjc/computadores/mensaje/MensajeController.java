@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -28,14 +28,16 @@ public class MensajeController implements CommandLineRunner {
 		
 	}
 	
-	@PostMapping("/chats/inputmensaje")
-	public String insertarMensaje(Model model, @RequestParam String mensaje, String chatid) {
-		Long id = Long.parseLong(chatid);
-		Chat elegido = chatRepo.findById(id).get();
+	@PostMapping("/chats/{chatid}/inputmensaje")
+	public String insertarMensaje(Model model,@PathVariable Long chatid, @RequestParam String mensaje) {
+		//Long id = Long.parseLong(chatid);
+		Chat elegido = chatRepo.findById(chatid).get();
 		elegido.insertarMensaje(mensaje);
 		chatRepo.save(elegido);
 		model.addAttribute("mensajes", elegido.getMensajes());
 		model.addAttribute("userid", elegido.getVendedor().getId());
+		model.addAttribute("chatid",elegido.getId());
+		model.addAttribute("titulo", elegido.getTitulo());
 		
 		return "chat";
 	}

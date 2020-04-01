@@ -18,7 +18,7 @@
 	
 	<body>
 		
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
   		<a class="navbar-brand" href="/">Market Place</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
@@ -30,15 +30,16 @@
     		</form>
   		</div>
   		<ul class="nav justify-content-end">
-    		<button class="btn btn-success mr-1">Registrarse</a>
-    		<button class="btn btn-primary">Subir Producto</a>
+			<form method="post" action="/logout">
+				<input type="submit" value="Sign Out"  class="btn btn-danger"/>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
 		</ul>
 	</nav>
 	<nav class="nav justify-content-center">
   		<a class="nav-link" href="/usuario/{{userid}}">Tus Productos</a>
-  		<a class="nav-link" href="#">Chats</a>
-  		<a class="nav-link" href="#">Favoritos</a>
-  		<a class="nav-link" href="#">Envíos</a>
+  		<a class="nav-link" href="/{{userid}}/chats">Chats</a>
+  		<a class="nav-link" href="/subirproducto">Subir Producto</a>
 	</nav>
 	
 	
@@ -46,7 +47,6 @@
 	<div class="container">
 	<br>
 			<h2>Productos vendidos</h2>
-					<form>
 					<table>
             		{{#vendidos}}
             			<tr>
@@ -59,12 +59,17 @@
             				<td>
             					{{precio}}
             				</td>
+            				<td>
+            					<form action="/generarfactura">
+		  							<input type="hidden" name="_csrf" value="{{token}}"/>
+		  							<input type="hidden" name="id" value="{{id}}"/>
+		  							<button type="submit" class="btn btn-primary">Generar Factura</button>
+            					</form>
+            				</td>
             			</tr>
             		{{/vendidos}}
            		</table>
-					</form>
 			<h2>Productos comprados</h2>
-					<form>
 					<table>
             		{{#comprados}}
             			<tr>
@@ -78,10 +83,19 @@
             				<td>
             					{{precio}}
             				</td>
+            				<td>
+            					<form action="/generarfactura">
+		  							<input type="hidden" name="_csrf" value="{{token}}"/>
+		  							<input type="hidden" name="id" value="{{id}}"/>
+		  							<button type="submit" class="btn btn-primary">Generar Factura</button>
+            					</form>
+            				</td>
+            				<td>
+            					<a href="/factura{{id}}.pdf" download>Ver factura</a>
+            				</td>
             			</tr>
             		{{/comprados}}
            		</table>
-			</form>
 		</div>
 	</body>	
 </html>

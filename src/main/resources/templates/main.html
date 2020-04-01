@@ -35,13 +35,32 @@
 			</form>
 		</div>
 		<ul class="nav justify-content-end">
+			{{^user}}
 			<a class="btn btn-success mr-1" href="registrar">Registrarse</a>
-			<a class="btn btn-primary">Subir Producto<a>
+			<a class="btn btn-primary" href="login">Iniciar Sesión</a>
+			{{/user}}
+			{{#user}}
+			<form method="post" action="/logout">
+				<input type="submit" value="Sign Out"  class="btn btn-danger"/>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
+			{{/user}}
+			{{#admin}}
+			<a class="btn btn-success mr-1" href="listausuarios">Lista de Usuarios</a>
+			{{/admin}}
 		</ul>
 	</nav>
 	<br>
+	{{#user}}
+	<nav class="nav justify-content-center">
+  		<a class="nav-link" href="/usuario/{{id}}">Tus Productos</a>
+  		<a class="nav-link" href="/{{id}}/chats">Chats</a>
+  		<a class="nav-link" href="/subirproducto">Subir Producto</a>
+  		<a class="nav-link" href="/gestionenvios">Envíos</a>
+	</nav>
+	{{/user}}
 	<div class="text-center">
-		<h2>Bienvenido a Marketplace</h2>
+		<h2>Bienvenido a Marketplace{{#user}}, {{nombreUser}} {{/user}}</h2>
 		<p>Tu tienda favorita donde podrás vender y comprar cosas inútiles</p>
 		<br>
 		<div class="btn-group" role="group"
@@ -58,9 +77,18 @@
 				<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
 					aria-haspopup="true" aria-expanded="false">Categoria</button>
 				<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-					<a class="dropdown-item">Dropdown link</a> 
-					<a class="dropdown-item">Dropdown link</a> 
-					<a class="dropdown-item">Dropdown link</a>
+					<a class="dropdown-item">Coches</a> 
+					<a class="dropdown-item">Motos</a> 
+					<a class="dropdown-item">Informática y tegnología</a>
+					<a class="dropdown-item">Electrodomesticos</a> 
+					<a class="dropdown-item">Aficiones</a> 
+					<a class="dropdown-item">Deportes</a>
+					<a class="dropdown-item">Música</a> 
+					<a class="dropdown-item">Mascotas</a> 
+					<a class="dropdown-item">Moda</a>
+					<a class="dropdown-item">Hogar y jardin</a> 
+					<a class="dropdown-item">Videojuegos y consolas</a> 
+					<a class="dropdown-item">Otros</a>
 				</div>
 			</div>
 			<div class="btn-group" role="group">
@@ -81,10 +109,10 @@
 				<div class="col">
 					<div class="card" style="width: 18rem;">
 						<div class="card-body">
-							<h5 class="card-title">{{nombre}}</h5>
+							<h5 class="card-title">{{titulo}}</h5>
 							<h6 class="card-subtitle mb-2 text-muted">{{categoria}}</h6>
 							<p class="card-text">{{descripcion}}</p>
-							<a href="/producto/{{id}}" class="btn btn-primary">Comprar</a>
+							<a href="/producto/{{id}}" class="btn btn-primary">Ver</a>
 						</div>
 					</div>
 				</div>

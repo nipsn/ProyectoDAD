@@ -16,7 +16,7 @@
 	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
 {{#producto}}
-<title>{{nombre}}</title>{{/producto}}
+<title>{{titulo}}</title>{{/producto}}
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,25 +35,53 @@
 			</form>
 		</div>
 		<ul class="nav justify-content-end">
-			<a class="btn btn-success mr-1" href="registrar">Registrarse</a>
-			<a class="btn btn-primary">Subir Producto<a>
+			<form method="post" action="/logout">
+				<input type="submit" value="Sign Out"  class="btn btn-danger"/>
+				<input type="hidden" name="_csrf" value="{{token}}"/>
+			</form>
 		</ul>
 	</nav>
-	<br>
-	{{#producto}}
-	<div class="text-center">
-	<h2>Vas a comprar {{nombre}}</h2>
-	<h4>Categoria: {{categoria}}</h4>
-	<br>
-	<p>
-		{{descripcion}}
-	</p>
-	<br>
-	<a href="/usuario/{{propietario.id}}">Propietario: {{propietario.nombre}}</a>
-	<br>
-	<br>
-	<a href="#" class="btn btn-primary">Confirmar Pedido</a>
+	
+	<div class="container">
+
+			<br>
+				{{#producto}}
+				<div class="text-center">
+				<h4>Categoria: {{categoria}}</h4>
+					<h2>Vas a comprar {{titulo}}</h2>
+					
+				<br>
+				<p>
+					{{descripcion}}
+				</p>
+				
+				<br>
+				<br>
+					<a href="/usuario/{{propietario.id}}">Propietario: {{propietario.nombreReal}}</a>
+				<br>
+				<br>
+				<div class="container">
+		<br>
+		<h2>Rellena los datos de entrega</h2>
 	</div>
-	{{/producto}}
+	<div class="container">
+		<form action="inputpedido" method="POST">
+			<div class="form-group">
+		    	<label for="exampleInputEmail1">Calle, numero y piso</label>
+		    	<input type="text" name='destino' class="form-control"required>
+		    	<label for="exampleInputEmail1">Código postal</label>
+		    	<input type="text" name='destino' class="form-control"required>
+		    	<label for="exampleInputEmail1">Localidad</label>
+		    	<input type="text" name='destino' class="form-control"required>
+		  	</div>
+		  	
+		  	<input type="hidden" name='productid' value="{{producto.id}}"/>
+		  	<input class="btn btn-primary" type="submit" value="Confirmar" method="POST">
+		  	<input type="hidden" name="_csrf" value="{{token}}"/>
+		  	{{/producto}}
+		</form>
+		
+	</div>
+	
 </body>
 </html>

@@ -13,6 +13,7 @@
 				<form action="inputchat" method="POST">
 					<input type='text' name='user1'/>Usuario 1 del chat
 					<input type='text' name='user2'/>Usuario 2 del chat
+					<input type="hidden" name="_csrf" value="{{token}}"/>
 					<input type='submit' value='Enviar'>
 				</form>
 			</div>
