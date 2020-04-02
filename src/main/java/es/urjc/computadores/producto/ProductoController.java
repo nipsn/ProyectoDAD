@@ -110,7 +110,6 @@ public class ProductoController implements CommandLineRunner {
 
 	@PostMapping("/comprarproducto/inputpedido")
 	public String confirmarCompra(Model model, @RequestParam String destino, String productid) {
-		System.out.println("Producto:" + productid + "Destino:" + destino);
 		Usuario user = usuario.getLoggedUser();
 
 		Producto p = productoRepo.findById(Long.parseLong(productid)).get();

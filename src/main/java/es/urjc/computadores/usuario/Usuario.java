@@ -35,10 +35,10 @@ public class Usuario {
 	@OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL)
 	private List<Producto> productosEnVenta;
 
-	@OneToMany(mappedBy = "remitente")
-	private List<Pedido> pedidosVendidos = new ArrayList<Pedido>();;
+	@OneToMany(mappedBy = "remitente", cascade = CascadeType.ALL)
+	private List<Pedido> pedidosVendidos = new ArrayList<Pedido>();
 
-	@OneToMany(mappedBy = "destinatario")
+	@OneToMany(mappedBy = "destinatario", cascade = CascadeType.ALL)
 	private List<Pedido> pedidosComprados = new ArrayList<Pedido>();
 
 	@OneToMany(mappedBy = "comprador", cascade = CascadeType.ALL)

@@ -17,12 +17,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.urjc.computadores.chat.Chat;
+import es.urjc.computadores.chat.ChatRepository;
+import es.urjc.computadores.pedido.Pedido;
+import es.urjc.computadores.pedido.PedidoRepository;
+import es.urjc.computadores.producto.ProductoRepository;
+
 @Controller
 public class UsuarioController implements CommandLineRunner {
 
 	@Autowired
 	private UsuarioRepository usuarioRepo;
-
+	
+	@Autowired
+	private PedidoRepository pedidoRepo;
+	
+	@Autowired
+	private ProductoRepository productoRepo;
+	
+	@Autowired
+	private ChatRepository chatRepo;
+	
 	@Autowired
 	private UserComponent usuariologueado;
 
@@ -91,7 +106,12 @@ public class UsuarioController implements CommandLineRunner {
 	
 	@GetMapping("/deleteUsuario/{userid}")
 	public String DeleteUsuario(Model model, @PathVariable Long userid) {
-		usuarioRepo.delete(usuarioRepo.findById(userid).get());
+		Usuario eliminado = usuarioRepo.findById(userid).get();
+//		List<Chat> listaChat = chatRepo.findByComprador(eliminado);
+//		listaChat.addAll(chatRepo.findByVendedor(eliminado));
+//		for(Chat c : listaChat) chatRepo.delete(c);
+//		List<Pedido> = pedidoRepo.findByPropietario(eliminado);
+		usuarioRepo.delete(eliminado);
 		
 		List<Usuario> lista = usuarioRepo.findAll();
 		int index = 0;
