@@ -1,0 +1,13 @@
+web:
+  build: .
+  ports:
+    - "8443:8443"
+  links:
+    - db
+  environment:
+    - SPRING_DATASOURCE_URL=jdbc:mysql://db/db_marketplace_sec
+db:
+  environment:
+    - MYSQL_ROOT_PASSWORD=pass
+    - MYSQL_DATABASE=db_marketplace_sec
+  image: mysql:5.6
