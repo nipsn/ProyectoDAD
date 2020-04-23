@@ -3,5 +3,7 @@ RUN apt-get update; apt-get install -y netcat
 COPY executables/demo-0.0.1-SNAPSHOT.jar /app/
 COPY ./run.sh /app/
 WORKDIR /app
+RUN mkdir /root/facturas
+RUN mkdir /root/facturas/facturasgeneradas
 RUN chmod 777 /app/run.sh
 CMD ["/app/run.sh"]

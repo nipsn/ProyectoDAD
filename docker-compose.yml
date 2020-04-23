@@ -1,5 +1,7 @@
 version: "3.7"
 services:
+
+
   web:
     build: .
     expose:
@@ -12,6 +14,8 @@ services:
       - red1
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/db_marketplace_sec
+
+
   db:
     networks:
       - red1
@@ -22,11 +26,13 @@ services:
   email:
     build: executables/Mailing
     networks:
-      - red1  
-    ports:
-      - "10001:10001"
+      - red1
+    expose:
+      - "10001"
     links:
       - db
+
+
   pdf:
     build: executables/PDF
     networks:
@@ -35,6 +41,8 @@ services:
       - "10000"
     links:
       - db
+
+
   web2:
     build: .
     expose:
@@ -47,10 +55,12 @@ services:
       - pdf
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://db/db_marketplace_sec
+
+
   lb:
       image: haproxy:2.1.4
       ports:
-        - "9090:443" # Only service that is exposed to the host is the lb 
+        - "9090:443"
         - "8404:8404"
       networks:
         - red1
@@ -61,6 +71,8 @@ services:
         - web
         - web2
       restart: unless-stopped
+
+
 networks:
     red1:
       driver: bridge

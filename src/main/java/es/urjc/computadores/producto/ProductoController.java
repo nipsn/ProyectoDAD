@@ -138,7 +138,7 @@ public class ProductoController implements CommandLineRunner {
 	private void comunicarSenderEmails(int pedidoId) {
 		Socket serverSocket = null;
         try {
-            serverSocket = new Socket("172.17.0.1", 10001);
+            serverSocket = new Socket("email", 10001);
             DataOutputStream dos = new DataOutputStream(serverSocket.getOutputStream());
             dos.writeInt(pedidoId);
             dos.close();
