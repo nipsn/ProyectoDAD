@@ -60,13 +60,12 @@ services:
   lb:
       image: haproxy:2.1.4
       ports:
-        - "9090:443"
+        - "443:443"
         - "8404:8404"
       networks:
         - red1
       volumes:
         - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
-        #- "./xip.io.pem:/etc/ssl/xip.io/xip.io.pem:ro"
       links:
         - web
         - web2
