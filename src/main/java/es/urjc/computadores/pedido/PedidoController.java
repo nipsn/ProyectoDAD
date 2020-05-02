@@ -60,7 +60,7 @@ public class PedidoController implements CommandLineRunner {
 	private void comunicarServicioInternoPDF(int pedidoId) {
 		Socket serverSocket;
 		try {
-			serverSocket = new Socket("localhost", 10000);
+			serverSocket = new Socket("pdf", 10000);
 			DataOutputStream dos = new DataOutputStream(serverSocket.getOutputStream());
 			dos.writeInt(pedidoId);
 
