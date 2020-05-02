@@ -1,6 +1,8 @@
 package es.urjc.computadores.usuario;
 
 
+import java.io.Serializable;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
@@ -19,7 +21,7 @@ import org.springframework.web.context.annotation.SessionScope;
 
 @Component
 @SessionScope
-public class UserComponent {
+public class UserComponent implements Serializable{
 
 	private Usuario user;
 

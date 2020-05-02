@@ -1,5 +1,7 @@
 package es.urjc.computadores;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Collections;
 
 import org.springframework.boot.SpringApplication;
@@ -23,8 +25,13 @@ public class ProyectoMarketplace {
 		Config config = new Config();
 		JoinConfig joinConfig = config.getNetworkConfig().getJoin();
 		joinConfig.getMulticastConfig().setEnabled(false);
-		joinConfig.getTcpIpConfig().setEnabled(true).setMembers(Collections.singletonList("127.0.0.1"));
+		
+		
+		List<String> serversList = new ArrayList<>(); 
+		serversList.add("web");
+		serversList.add("web2");
+		
+		joinConfig.getTcpIpConfig().setEnabled(true).setMembers(serversList);
 		return config;
 	}
-
 }
