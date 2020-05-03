@@ -1,5 +1,6 @@
 package es.urjc.computadores.pedido;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import es.urjc.computadores.producto.Producto;
 import es.urjc.computadores.usuario.Usuario;
 
 @Entity
-public class Pedido {
+public class Pedido implements Serializable{
 
 	
 	@Id

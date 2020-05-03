@@ -1,11 +1,12 @@
 package es.urjc.computadores.mensaje;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
 
 @Entity
-public class Mensaje {
+public class Mensaje implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;

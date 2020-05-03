@@ -1,12 +1,14 @@
 package es.urjc.computadores.producto;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 import es.urjc.computadores.pedido.Pedido;
 import es.urjc.computadores.usuario.Usuario;
 
 @Entity
-public class Producto {
+public class Producto implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -70,7 +72,19 @@ public class Producto {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-
+	@Override
+	public String toString() {
+		return titulo+"-"+descripcion+"--"+categoria+"--"+precio+"--"+propietario.getNombreReal(); 
+	}
+	
+	public boolean equals(Producto p) {
+		return this.id==p.getId();
+	}
+	public int hashCode() {
+		return (int)id;
+		
+		
+	}
 	
 	
 }
