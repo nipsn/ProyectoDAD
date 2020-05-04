@@ -10,7 +10,8 @@ Se adjunta el link del vídeo explicativo del proyecto:
 https://www.youtube.com/watch?v=6Kwo7EgnMgI&feature=youtu.be
 
 # Despliegue
-- (SE REALIZÓ PARA LA FASE 3 => EN LA VERSIÓN ACTUAL SE HA MIGRADO A DOCKER) -
+- (SE REALIZÓ PARA LA FASE 3 => EN LA VERSIÓN ACTUAL SE HA MIGRADO A DOCKER)
+
 Se ha hecho el despliegue en Ubuntu Server 18.04, y para ello se han seguido los siguientes pasos:
 ### 1: Instalación de los paquetes necesarios
 Se debe instalar tanto MySQL como java. Para ello se puede hacer todo con un solo comando:
