@@ -1,5 +1,6 @@
 package es.urjc.computadores.chat;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +13,7 @@ import es.urjc.computadores.usuario.Usuario;
 
 
 @Entity
-public class Chat {
+public class Chat implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;

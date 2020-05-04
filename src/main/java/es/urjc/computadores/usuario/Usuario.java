@@ -1,5 +1,6 @@
 package es.urjc.computadores.usuario;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import es.urjc.computadores.pedido.Pedido;
 import es.urjc.computadores.producto.Producto;
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
