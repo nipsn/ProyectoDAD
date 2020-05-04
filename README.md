@@ -9,7 +9,8 @@ Parte pública: darte de alta, login, ver productos.
 Se adjunta el link del vídeo explicativo del proyecto:
 https://www.youtube.com/watch?v=6Kwo7EgnMgI&feature=youtu.be
 
-# Despliegue - (SE REALIZÓ PARA LA FASE 3 => EN LA VERSIÓN ACTUAL SE HA MIGRADO A DOCKER)
+# Despliegue
+- (SE REALIZÓ PARA LA FASE 3 => EN LA VERSIÓN ACTUAL SE HA MIGRADO A DOCKER) -
 Se ha hecho el despliegue en Ubuntu Server 18.04, y para ello se han seguido los siguientes pasos:
 ### 1: Instalación de los paquetes necesarios
 Se debe instalar tanto MySQL como java. Para ello se puede hacer todo con un solo comando:
@@ -70,6 +71,7 @@ Contenedor donde se ejecuta el balanceador de carga que se encarga de redirigir 
 
 # Servicios internos 
 Los servicios internos se ejecutan en contenedores Docker independientes y se comunican a través de la exposición de los puertos correspondientes con la aplicación web principal.
+
 **Generar una factura en PDF**
 
 <kbd>![enter image description here](Interfaz/InvoiceGeneratorInterface.png)</kbd>
@@ -79,7 +81,6 @@ Los servicios internos se ejecutan en contenedores Docker independientes y se co
 <kbd>![enter image description here](Interfaz/EmailSenderInterface.png)</kbd>
 
  ## Pantallas de la aplicación
-Se especifican los wireframes de las principales pantallas de Gym Tool
 
 **Diagrama de Flujo de Pantalla**
 
