@@ -5,7 +5,11 @@ Parte privada: gestión de tus productos, comunicarte con otros usuarios y compr
 
 Parte pública: darte de alta, login, ver productos.
 
-# Despliegue
+# Vídeo DEMO
+Se adjunta el link del vídeo explicativo del proyecto:
+https://www.youtube.com/watch?v=6Kwo7EgnMgI&feature=youtu.be
+
+# Despliegue - (SE REALIZÓ PARA LA FASE 3 => EN LA VERSIÓN ACTUAL SE HA MIGRADO A DOCKER)
 Se ha hecho el despliegue en Ubuntu Server 18.04, y para ello se han seguido los siguientes pasos:
 ### 1: Instalación de los paquetes necesarios
 Se debe instalar tanto MySQL como java. Para ello se puede hacer todo con un solo comando:
@@ -34,6 +38,29 @@ En la carpeta `executables` hay 3 archivos `.jar` que se deberán ejecutar cada 
 
 Para ejecutar cada uno de ellos se usa el comando `java -jar ejecutable.jar`, donde `ejecutable.jar` corresponde a cada uno de los ejecutables.
 
+# Estructura Dockerizada
+La estructura se basa en la composición de varios contenedores Docker conectados entre sí. Se ha usado la herramienta de "docker-compose" para relacionar los contenedores. A continuación se especifican los contenedores:
+
+### 1: Aplicación Web
+Contenedor donde se ejecuta la aplicación web principal
+
+### 2: Aplicación Web Duplicada
+Contenedor donde se ejecuta la aplicación web principal duplicada para ser tolerante a fallos de caída de servidor.
+
+### 3: Base de Datos - MySQL
+Contenedor donde se ejecuta la base de datos.
+
+### 4: Servicio Interno - Mailing
+Contenedor donde se ejecuta la aplicación que se encarga de mandar un email cuando haces un pedido.
+
+### 5: Servicio Interno - Generar Factura
+Contenedor donde se ejecuta la aplicación que se encarga de generar una factura de un pedido concreto.
+
+### 6: Balanceador de carga - HAProxy
+Contenedor donde se ejecuta el balanceador de carga que se encarga de redirigir las peticiones a los contenedores de la Aplicación Web Principal.
+
+![alt text](dockers.png)
+
 # Modelo Entidad-Relación
 ![alt text](modeloER.jpeg)
 
@@ -42,6 +69,7 @@ Para ejecutar cada uno de ellos se usa el comando `java -jar ejecutable.jar`, do
 
 
 # Servicios internos 
+Los servicios internos se ejecutan en contenedores Docker independientes y se comunican a través de la exposición de los puertos correspondientes con la aplicación web principal.
 **Generar una factura en PDF**
 
 <kbd>![enter image description here](Interfaz/InvoiceGeneratorInterface.png)</kbd>
