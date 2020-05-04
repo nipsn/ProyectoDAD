@@ -19,8 +19,10 @@ public interface ProductoRepository extends JpaRepository<Producto, Long>{
 	@Cacheable
 	List<Producto> findAll();
 	
+	
 	@CacheEvict(allEntries = true)
 	Producto save(Producto producto);
+	
 	
 	
 }
